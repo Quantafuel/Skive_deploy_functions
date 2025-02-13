@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 # To add tags to the function, add the external ID to the list
 # The variable minutes_ago sets the max "age" of datapoints to be refreshed
 
-
 def handle(client):
 
     ext_ids = [
