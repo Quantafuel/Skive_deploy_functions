@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 # This is done to be able to show continuous lines in grafana.
 # To add tags to the function, add the external ID to the list
 # The variable minutes_ago sets the max "age" of datapoints to be refreshed
+#
 
 
 def handle(client):
