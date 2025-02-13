@@ -18,7 +18,8 @@ def handle(client):
         "2s=P02_QJD_QN606:M_POS",
         "2s=P03_QJD_QN606:M_POS",
         "2s=P04_QJD_QN606:M_POS",
-        "2s=P02_QJD_BF603:M_MID"
+        "2s=P02_QJD_BF603:M_MID",
+        "2s=P02_EKG_QN613:M_POS",
     ]
 
     minutes_ago = 10
