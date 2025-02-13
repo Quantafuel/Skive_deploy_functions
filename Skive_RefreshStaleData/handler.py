@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 # The variable minutes_ago sets the max "age" of datapoints to be refreshed
 #
 
-
 def handle(client):
 
     ext_ids = ["2s=P01_INFD_PLAST_M_KG", "2s=P02_INFD_PLAST_M_KG", "2s=P03_INFD_PLAST_M_KG", "2s=P04_INFD_PLAST_M_KG"]
