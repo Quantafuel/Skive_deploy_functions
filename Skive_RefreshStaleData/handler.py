@@ -5,12 +5,20 @@ from datetime import datetime, timedelta
 # This is done to be able to show continuous lines in grafana.
 # To add tags to the function, add the external ID to the list
 # The variable minutes_ago sets the max "age" of datapoints to be refreshed
-#
 
 
 def handle(client):
 
-    ext_ids = ["2s=P01_INFD_PLAST_M_KG", "2s=P02_INFD_PLAST_M_KG", "2s=P03_INFD_PLAST_M_KG", "2s=P04_INFD_PLAST_M_KG"]
+    ext_ids = [
+        "2s=P01_INFD_PLAST_M_KG",
+        "2s=P02_INFD_PLAST_M_KG",
+        "2s=P03_INFD_PLAST_M_KG",
+        "2s=P04_INFD_PLAST_M_KG",
+        "2s=P01_QJD_QN606:M_POS",
+        "2s=P02_QJD_QN606:M_POS",
+        "2s=P03_QJD_QN606:M_POS",
+        "2s=P04_QJD_QN606:M_POS",
+    ]
 
     minutes_ago = 10
 
