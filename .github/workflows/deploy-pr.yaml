@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
+          - Skive_RefreshStaleData
     steps:
       - uses: actions/checkout@v2
 
