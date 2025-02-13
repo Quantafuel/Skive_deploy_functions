@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "example_function1, example_function2"
+      deploy_folders:
       trigger_deploy_all_folders: "common"
 
   deploy:
@@ -80,12 +80,12 @@ jobs:
           # Parameters you may likely hardcode here directly.
           # - If you need to specify them individually, change them into...:
           # foo_bar: ${{ steps.extract_params.outputs.foo_bar }}
-          deployment_client_id: 5f18d04a-2d2a-41a2-aa15-bd62a149cd14
-          deployment_tenant_id: 0d75f6b8-c6b9-4e84-baca-503e08aa7e4a
-          schedules_client_id: 9347b37d-e94f-44d5-a69d-5867f55d7f6e
-          schedules_tenant_id: 0d75f6b8-c6b9-4e84-baca-503e08aa7e4a
-          cdf_project: forge-sandbox  # or my-company, my-organisation-prod etc.
-          cdf_cluster: greenfield  # or api, westeurope-1, etc.
+          deployment_client_id: ${{ secrets.DEPLOYMENT_CLIENT_ID }}
+          deployment_tenant_id: 92bce3bb-abfb-484b-b074-32e1a37f3631
+          schedules_client_id: ${{ secrets.SCHEDULE_CLIENT_ID }}
+          schedules_tenant_id: 92bce3bb-abfb-484b-b074-32e1a37f3631
+          cdf_project: quanta-dev  # or my-company, my-organisation-prod etc.
+          cdf_cluster: api  # or api, westeurope-1, etc.
           runtime: py39
           await_deployment_success: true  # set to false to skip waiting for deployments entirely
 
