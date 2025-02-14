@@ -23,7 +23,7 @@ jobs:
         environment:
           - prod
 
-    environment: ${{ matrix.environment }}
+    environment: prod #${{ matrix.environment }}
 
     steps:
       - uses: actions/checkout@v4
