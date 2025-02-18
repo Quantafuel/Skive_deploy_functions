@@ -81,8 +81,8 @@ jobs:
           # - If you need to specify them individually, change them into...:
           # foo_bar: ${{ steps.extract_params.outputs.foo_bar }}
           deployment_client_id: ${{ secrets.DEPLOYMENT_CLIENT_ID }}
-          deployment_tenant_id: 92bce3bb-abfb-484b-b074-32e1a37f3631
-          schedules_client_id: ${{ secrets.SCHEDULE_CLIENT_ID }}
+          #deployment_tenant_id: 92bce3bb-abfb-484b-b074-32e1a37f3631
+          schedules_client_id: ${{ secrets.SCHEDULES_CLIENT_ID }}
           cdf_cluster: api
           cdf_project: quanta-dev
           runtime: py39
@@ -101,6 +101,8 @@ jobs:
           # Individual parameters per function we read from:
           # - function_config.yaml
           # - function_config_[environment].yaml
+          schedules_tenant_id: ${{ steps.extract_params.outputs.tenant_id }}
+          deployment_tenant_id: ${{ steps.extract_params.outputs.tenant_id }}
           data_set_id: ${{ steps.extract_params.outputs.data_set_id }}
           common_folder: ${{ steps.extract_params.outputs.common_folder }}
           function_deploy_timeout: ${{ steps.extract_params.outputs.function_deploy_timeout }}
@@ -111,5 +113,5 @@ jobs:
           metadata: ${{ steps.extract_params.outputs.metadata }}
 
           # Individual parameters seldom needed:
-          index_url: ${{ steps.extract_params.outputs.index_url }}
-          extra_index_urls: ${{ steps.extract_params.outputs.extra_index_urls }}
+          #index_url: ${{ steps.extract_params.outputs.index_url }}
+          #extra_index_urls: ${{ steps.extract_params.outputs.extra_index_urls }}
