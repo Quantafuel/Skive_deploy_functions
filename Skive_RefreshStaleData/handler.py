@@ -1,6 +1,3 @@
-from datetime import datetime, timedelta
-
-
 # This function will create new datapoints for the listed external IDs when the data is stale.
 # This is done to be able to show continuous lines in grafana.
 # To add tags to the function, add the external ID to the list
@@ -8,6 +5,8 @@ from datetime import datetime, timedelta
 
 
 def handle(client):
+    # from cog_client import client
+    from datetime import datetime, timedelta
 
     ext_ids = [
         "2s=P01_INFD_PLAST_M_KG",
