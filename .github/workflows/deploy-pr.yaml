@@ -17,7 +17,7 @@ jobs:
           python-version: '3.9'
 
       - name: Load cached $HOME/.local
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.local
           key: dotlocal-${{ runner.os }}-${{ hashFiles('.github/workflows/deploy-pr.yaml') }}
@@ -31,7 +31,7 @@ jobs:
 
       - name: Load cached poetry venv
         id: cached-poetry-venv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/deploy-pr.yaml') }}

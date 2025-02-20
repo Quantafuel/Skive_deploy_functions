@@ -8,12 +8,7 @@ def handle(secrets, client):
     import pandas as pd
     import requests
 
-    # from cog_client import client
     from cognite.client.data_classes import Event
-
-    # type: ignore
-    # from dotenv import load_dotenv
-    # load_dotenv()
 
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
