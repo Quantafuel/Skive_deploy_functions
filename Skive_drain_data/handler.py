@@ -15,8 +15,8 @@ def handle(secrets, client):
     # from dotenv import load_dotenv
     # load_dotenv()
 
-    CLIENT_SECRET = secrets.get("lists-secret")
     CLIENT_ID = secrets.get("lists-id")
+    CLIENT_SECRET = secrets.get("lists-secret")
 
     # %%
     class DrainData:
