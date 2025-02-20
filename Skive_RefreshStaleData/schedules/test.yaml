@@ -1,3 +1,0 @@
-- name: Every 10 minutes
-  cron: "*/10 * * * *"
-  data:
