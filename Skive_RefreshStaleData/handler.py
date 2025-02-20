@@ -26,6 +26,7 @@ def handle(client):
         "2s=P03_EKG_BF604:M_MID",
         "2s=P04_EKG_BF604:M_MID",
         "2s=P04_EKG_QN613:M_POS",
+        "2s=P04_QJD_BF603:M_MID",
     ]
 
     minutes_ago = 10
