@@ -1,6 +1,5 @@
 def handle(secrets, client):
     #     # import os
-    import base64
     import uuid
 
     from datetime import datetime, time, timedelta, timezone
@@ -16,14 +15,8 @@ def handle(secrets, client):
     # from dotenv import load_dotenv
     # load_dotenv()
 
-    EXTRA_SECRET = secrets.get("function_secrets")
-
-    # Decode from base64
-    decoded_bytes = base64.b64decode(EXTRA_SECRET)
-    decoded_str = decoded_bytes.decode("utf-8")
-
-    CLIENT_ID = decoded_str.split(":")[0]
-    CLIENT_SECRET = decoded_str.split(":")[1]
+    CLIENT_SECRET = secrets.get("lists-secret")
+    CLIENT_ID = secrets.get("lists-id")
 
     # %%
     class DrainData:
