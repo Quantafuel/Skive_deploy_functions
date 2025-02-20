@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_drain_data
-          - Skive_RefreshStaleData
+          - Skive_Event_Creator_for_Production_Report
     steps:
       - uses: actions/checkout@v2
 
