@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_number_of_lines_running"
+      deploy_folders: "Skive_natural_gas_consumption"
       trigger_deploy_all_folders: "common"
 
   deploy:
