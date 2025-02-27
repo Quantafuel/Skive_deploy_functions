@@ -8,7 +8,6 @@ def handle(secrets, client):
     import pandas as pd
     import requests
 
-    # from cog_client import client
     from cognite.client.data_classes import Event
 
     # type: ignore
