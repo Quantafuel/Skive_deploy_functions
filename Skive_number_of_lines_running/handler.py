@@ -22,7 +22,7 @@ def handle(data, client):
     # dk_tz = pytz.timezone('Europe/Copenhagen')
     # time_local = dk_tz.localize(time_now)
 
-    df = client.datapoints.retrieve_latest(
+    df = client.time_series.data.retrieve_latest(
         external_id=[data["line1"], data["line2"], data["line3"], data["line4"]], before=time_now
     ).to_pandas()
 
@@ -35,5 +35,5 @@ def handle(data, client):
         if i > 0:
             lines_running += 1
 
-    client.datapoints.insert([(time_now, lines_running)], external_id="number_lines_running")
+    client.time_series.data.insert([(time_now, lines_running)], external_id="number_lines_running")
     return lines_running
