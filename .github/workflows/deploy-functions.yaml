@@ -9,7 +9,6 @@ jobs:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
       deploy_folders: "Skive_montly_production_numbers"
-      trigger_deploy_all_folders: "common"
 
   deploy:
     needs: generate-matrix
