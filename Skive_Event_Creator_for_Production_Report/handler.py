@@ -19,8 +19,6 @@ def handle(secrets, client):
 
     """
     import math
-
-    # import os
     import uuid
 
     from datetime import datetime, time, timedelta, timezone
