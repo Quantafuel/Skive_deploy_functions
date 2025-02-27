@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_Event_Creator_for_Production_Report
+          - Skive_number_of_lines_running
     steps:
       - uses: actions/checkout@v2
 
