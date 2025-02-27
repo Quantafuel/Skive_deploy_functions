@@ -36,4 +36,5 @@ def handle(data, client):
             lines_running += 1
 
     client.time_series.data.insert([(time_now, lines_running)], external_id="number_lines_running")
+
     return lines_running
