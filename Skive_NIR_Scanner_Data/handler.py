@@ -52,3 +52,4 @@ def handle(data, client):
     selected_cols = df_peute.iloc[:, :-1]
     result = selected_cols.apply(lambda row: row / row.sum() * 100, axis=1)
     client.time_series.data.insert_dataframe(result)
+    print("Function finished successfully")
