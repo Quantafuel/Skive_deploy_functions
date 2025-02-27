@@ -82,7 +82,7 @@ jobs:
           # foo_bar: ${{ steps.extract_params.outputs.foo_bar }}
           deployment_client_id: ${{ secrets.DEPLOYMENT_CLIENT_ID }}
           #deployment_tenant_id: 92bce3bb-abfb-484b-b074-32e1a37f3631
-          schedules_client_id: ${{ secrets.SCHEDULES_CLIENT_ID }}
+          schedules_client_id: ${{ secrets.SCHEDULE_CLIENT_ID }}
           cdf_cluster: api
           cdf_project: quanta-dev
           runtime: py39
@@ -95,7 +95,7 @@ jobs:
 
           # Parameters we get from Github secret storage:
           deployment_client_secret: ${{secrets.DEPLOYMENT_CLIENT_SECRET }}
-          schedules_client_secret: ${{ secrets.SCHEDULES_CLIENT_SECRET }}
+          schedules_client_secret: ${{ secrets.SCHEDULE_CLIENT_SECRET }}
           function_secrets: ${{ secrets[steps.extract_secrets.outputs.extra_secrets_name] }}
 
           # Individual parameters per function we read from:
