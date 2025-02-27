@@ -37,86 +37,106 @@ def handle(client):
     # %%
     # Hourly NG useage
     dps_hour_first_1 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline1"], before=last_hour - datetime.timedelta(hours=1))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline1"], before=last_hour - datetime.timedelta(hours=1)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_hour_last_1 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline1"], before=last_hour).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline1"], before=last_hour).to_pandas().iloc[0, 0]
     )
     dps_hour_first_2 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline2"], before=last_hour - datetime.timedelta(hours=1))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline2"], before=last_hour - datetime.timedelta(hours=1)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_hour_last_2 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline2"], before=last_hour).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline2"], before=last_hour).to_pandas().iloc[0, 0]
     )
     dps_hour_first_3 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline3"], before=last_hour - datetime.timedelta(hours=1))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline3"], before=last_hour - datetime.timedelta(hours=1)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_hour_last_3 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline3"], before=last_hour).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline3"], before=last_hour).to_pandas().iloc[0, 0]
     )
     dps_hour_first_4 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline4"], before=last_hour - datetime.timedelta(hours=1))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline4"], before=last_hour - datetime.timedelta(hours=1)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_hour_last_4 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline4"], before=last_hour).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline4"], before=last_hour).to_pandas().iloc[0, 0]
     )
     dps_hour_first_flare = (
-        client.datapoints.retrieve_latest(external_id=data["NGflare"], before=last_hour - datetime.timedelta(hours=1))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGflare"], before=last_hour - datetime.timedelta(hours=1)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_hour_last_flare = (
-        client.datapoints.retrieve_latest(external_id=data["NGflare"], before=last_hour).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGflare"], before=last_hour).to_pandas().iloc[0, 0]
     )
 
     # Daily NG useage
     dps_first_1 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline1"], before=time_local - datetime.timedelta(hours=24))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline1"], before=time_local - datetime.timedelta(hours=24)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_last_1 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline1"], before=time_local).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline1"], before=time_local).to_pandas().iloc[0, 0]
     )
     dps_first_2 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline2"], before=time_local - datetime.timedelta(hours=24))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline2"], before=time_local - datetime.timedelta(hours=24)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_last_2 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline2"], before=time_local).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline2"], before=time_local).to_pandas().iloc[0, 0]
     )
     dps_first_3 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline3"], before=time_local - datetime.timedelta(hours=24))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline3"], before=time_local - datetime.timedelta(hours=24)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_last_3 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline3"], before=time_local).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline3"], before=time_local).to_pandas().iloc[0, 0]
     )
     dps_first_4 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline4"], before=time_local - datetime.timedelta(hours=24))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGline4"], before=time_local - datetime.timedelta(hours=24)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_last_4 = (
-        client.datapoints.retrieve_latest(external_id=data["NGline4"], before=time_local).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGline4"], before=time_local).to_pandas().iloc[0, 0]
     )
     dps_first_flare = (
-        client.datapoints.retrieve_latest(external_id=data["NGflare"], before=time_local - datetime.timedelta(hours=24))
+        client.time_series.data.retrieve_latest(
+            external_id=data["NGflare"], before=time_local - datetime.timedelta(hours=24)
+        )
         .to_pandas()
         .iloc[0, 0]
     )
     dps_last_flare = (
-        client.datapoints.retrieve_latest(external_id=data["NGflare"], before=time_local).to_pandas().iloc[0, 0]
+        client.time_series.data.retrieve_latest(external_id=data["NGflare"], before=time_local).to_pandas().iloc[0, 0]
     )
 
     NG_last24_all = [
@@ -134,13 +154,13 @@ def handle(client):
         dps_hour_last_flare - dps_hour_first_flare,
     ]
 
-    client.datapoints.insert([(time_local, NG_last24_all[0])], external_id="daily_NGuseage_line1")
-    client.datapoints.insert([(time_local, NG_last24_all[1])], external_id="daily_NGuseage_line2")
-    client.datapoints.insert([(time_local, NG_last24_all[2])], external_id="daily_NGuseage_line3")
-    client.datapoints.insert([(time_local, NG_last24_all[3])], external_id="daily_NGuseage_line4")
-    client.datapoints.insert([(time_local, NG_last24_all[4])], external_id="daily_NGuseage_flare")
-    client.datapoints.insert([(last_hour, NG_lasthour_all[0])], external_id="hourly_NGuseage_line1")
-    client.datapoints.insert([(last_hour, NG_lasthour_all[1])], external_id="hourly_NGuseage_line2")
-    client.datapoints.insert([(last_hour, NG_lasthour_all[2])], external_id="hourly_NGuseage_line3")
-    client.datapoints.insert([(last_hour, NG_lasthour_all[3])], external_id="hourly_NGuseage_line4")
-    client.datapoints.insert([(last_hour, NG_lasthour_all[4])], external_id="hourly_NGuseage_flare")
+    client.time_series.data.insert([(time_local, NG_last24_all[0])], external_id="daily_NGuseage_line1")
+    client.time_series.data.insert([(time_local, NG_last24_all[1])], external_id="daily_NGuseage_line2")
+    client.time_series.data.insert([(time_local, NG_last24_all[2])], external_id="daily_NGuseage_line3")
+    client.time_series.data.insert([(time_local, NG_last24_all[3])], external_id="daily_NGuseage_line4")
+    client.time_series.data.insert([(time_local, NG_last24_all[4])], external_id="daily_NGuseage_flare")
+    client.time_series.data.insert([(last_hour, NG_lasthour_all[0])], external_id="hourly_NGuseage_line1")
+    client.time_series.data.insert([(last_hour, NG_lasthour_all[1])], external_id="hourly_NGuseage_line2")
+    client.time_series.data.insert([(last_hour, NG_lasthour_all[2])], external_id="hourly_NGuseage_line3")
+    client.time_series.data.insert([(last_hour, NG_lasthour_all[3])], external_id="hourly_NGuseage_line4")
+    client.time_series.data.insert([(last_hour, NG_lasthour_all[4])], external_id="hourly_NGuseage_flare")
