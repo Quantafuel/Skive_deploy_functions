@@ -11,6 +11,7 @@ def handle(client):
 
     import pytz
 
+    # Probably needs python higher than 3.10
     from dateutil.relativedelta import relativedelta
 
     data = {
