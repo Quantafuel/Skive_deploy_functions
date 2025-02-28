@@ -20,6 +20,7 @@ def handle(client):
         "productionhours4": ["2s=L4_PRODUCTION_HOURS:Q_TT"],
     }
 
+    # code
     dk_tz = pytz.timezone("Europe/Copenhagen")
     today = datetime.today()
     t = today.replace(day=1, hour=0, minute=0, second=0)
