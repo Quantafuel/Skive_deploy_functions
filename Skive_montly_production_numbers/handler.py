@@ -27,7 +27,6 @@ def handle(client):
     time_now = t.replace(hour=23, minute=59, second=59)
     time_local = dk_tz.localize(time_now)
 
-    # Get current time and localize
     now = datetime.now(dk_tz)
 
     # Get the last day of the previous month at 23:59:59
