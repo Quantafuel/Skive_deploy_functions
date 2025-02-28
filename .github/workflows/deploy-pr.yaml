@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_NIR_Scanner_Data
+          - Skive_montly_production_numbers
     steps:
       - uses: actions/checkout@v2
 
