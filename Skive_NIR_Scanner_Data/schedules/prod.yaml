@@ -1,0 +1,15 @@
+- name: Hourly Run
+  cron: "0 * * * *"
+  data:
+    ABS: "2s=TOMRA_MATERIAL_1"
+    HDPE: "2s=TOMRA_MATERIAL_2"
+    LDPE: "2s=TOMRA_MATERIAL_3"
+    PET: "2s=TOMRA_MATERIAL_4"
+    PP: "2s=TOMRA_MATERIAL_6"
+    PS: "2s=TOMRA_MATERIAL_7"
+    PVC: "2s=TOMRA_MATERIAL_8"
+    Plastic general: "2s=TOMRA_MATERIAL_5"
+    peute: "schr_load_Peute_Folie"
+    roaf: "schr_load_ROAF"
+    total: "schr_load_Total_(Paprec)"
+    water: "2s=TOMRA_WATER_CONTENT_2:M_MID"

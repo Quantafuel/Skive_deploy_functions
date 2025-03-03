@@ -1,0 +1,7 @@
+- name: Skive number of lines running
+  cron: "* * * * *"
+  data:
+    line1: "2s=P01EAC01GL001M101:M_HAST"
+    line2: "2s=P02EAC02GL001M201:M_HAST"
+    line3: "2s=P03EAC03GL001M301:M_HAST"
+    line4: "2s=P04EAC04GL001M401:M_HAST"
