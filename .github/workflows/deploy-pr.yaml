@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_daily_production_hours
+          - Skive_daily_plastic_feed_totalizer
 
     steps:
       - uses: actions/checkout@v2
