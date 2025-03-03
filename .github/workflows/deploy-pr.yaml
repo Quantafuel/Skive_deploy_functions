@@ -9,7 +9,6 @@ jobs:
       matrix:
         function:
           - Skive_daily_plastic_feed_totalizer
-
     steps:
       - uses: actions/checkout@v2
 
