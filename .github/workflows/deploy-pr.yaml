@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_montly_production_numbers
+          - Skive_daily_production_hours
     steps:
       - uses: actions/checkout@v2
 
