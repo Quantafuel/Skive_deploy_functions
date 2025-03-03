@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_montly_production_numbers
+          - Skive_natural_gas_consumption
     steps:
       - uses: actions/checkout@v2
 
