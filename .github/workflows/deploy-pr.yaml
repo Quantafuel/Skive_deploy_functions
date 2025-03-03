@@ -9,7 +9,6 @@ jobs:
       matrix:
         function:
           - Skive_daily_production_hours
-
     steps:
       - uses: actions/checkout@v2
 
