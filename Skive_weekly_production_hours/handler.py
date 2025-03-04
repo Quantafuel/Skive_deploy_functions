@@ -11,6 +11,7 @@ def handle(data, client):
 
     import pytz
 
+    # import pandas
     data = {
         "start_time": "1d-ago",
         "end_time": "now",
