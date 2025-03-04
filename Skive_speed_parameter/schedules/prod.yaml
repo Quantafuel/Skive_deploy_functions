@@ -1,2 +1,2 @@
-- name: Calculate daily electrical consumption in Skive
-  cron: "1 0 * * *"
+- name: Speed parameter calculation
+  cron: "*/10 * * * *"
