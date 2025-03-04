@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_plastic_feed_old"
+      deploy_folders: "Skive_weekly_production_hours"
       trigger_deploy_all_folders: "common"
 
   deploy:
