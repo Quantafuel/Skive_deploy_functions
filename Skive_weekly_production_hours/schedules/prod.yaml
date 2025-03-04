@@ -1,2 +1,2 @@
-- name: Calculate last days production hours
-  cron: "0 1 * * *"
+- name: Calculate last weeks production hours
+  cron: "0 1 * * 1"

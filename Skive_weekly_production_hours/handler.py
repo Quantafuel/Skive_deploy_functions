@@ -34,43 +34,43 @@ def handle(data, client):
         .iloc[0, 0]
     )
     df_dps_now_1_first = (
-        client.time_series.retrieve_latest(external_id=data["productionhours1"], before=time_now_DKlocal)
+        client.time_series.data.retrieve_latest(external_id=data["productionhours1"], before=time_now_DKlocal)
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_24_2_first = (
-        client.time_series.retrieve_latest(
+        client.time_series.data.retrieve_latest(
             external_id=data["productionhours2"], before=time_now_DKlocal - datetime.timedelta(weeks=1)
         )
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_now_2_first = (
-        client.time_series.retrieve_latest(external_id=data["productionhours2"], before=time_now_DKlocal)
+        client.time_series.data.retrieve_latest(external_id=data["productionhours2"], before=time_now_DKlocal)
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_24_3_first = (
-        client.time_series.retrieve_latest(
+        client.time_series.data.retrieve_latest(
             external_id=data["productionhours3"], before=time_now_DKlocal - datetime.timedelta(weeks=1)
         )
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_now_3_first = (
-        client.time_series.retrieve_latest(external_id=data["productionhours3"], before=time_now_DKlocal)
+        client.time_series.data.retrieve_latest(external_id=data["productionhours3"], before=time_now_DKlocal)
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_24_4_first = (
-        client.time_series.retrieve_latest(
+        client.time_series.data.retrieve_latest(
             external_id=data["productionhours4"], before=time_now_DKlocal - datetime.timedelta(weeks=1)
         )
         .to_pandas()
         .iloc[0, 0]
     )
     df_dps_now_4_first = (
-        client.time_series.retrieve_latest(external_id=data["productionhours4"], before=time_now_DKlocal)
+        client.time_series.data.retrieve_latest(external_id=data["productionhours4"], before=time_now_DKlocal)
         .to_pandas()
         .iloc[0, 0]
     )
@@ -88,9 +88,9 @@ def handle(data, client):
         (time_now_DKlocal, operating_last24_all_start[3]),
     ]
 
-    client.time_series.insert([dps[0]], external_id="weekly_uptime_line1")
-    client.time_series.insert([dps[1]], external_id="weekly_uptime_line2")
-    client.time_series.insert([dps[2]], external_id="weekly_uptime_line3")
-    client.time_series.insert([dps[3]], external_id="weekly_uptime_line4")
+    client.time_series.data.insert([dps[0]], external_id="weekly_uptime_line1")
+    client.time_series.data.insert([dps[1]], external_id="weekly_uptime_line2")
+    client.time_series.data.insert([dps[2]], external_id="weekly_uptime_line3")
+    client.time_series.data.insert([dps[3]], external_id="weekly_uptime_line4")
 
     return operating_last24_all_start
