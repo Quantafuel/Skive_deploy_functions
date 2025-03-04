@@ -6,12 +6,6 @@ Created on Fri Mar 31 10:23:43 2023
 """
 
 
-# data = {
-#         "el": ["2s=P10_AAW01_BJ01:M_P"],
-#         "spot": ["spotprice_el_Skive"]
-#         }
-
-
 def handle(client):
     import datetime
 
