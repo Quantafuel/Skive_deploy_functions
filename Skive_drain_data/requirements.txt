@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2e32876af372fd5af900acb14619f48b385438d
->>>>>>> f940fb064d66961a1344943a4994b238e053c225
-cognite-sdk==7.73.3
-pandas==2.2.3
 pandas
-requests==2.32.3
 requests
-types-requests==2.32.0.20241016
 types-requests
