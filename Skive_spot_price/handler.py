@@ -23,4 +23,4 @@ def handle(client):
         # dps.append(r.json()["records"][pos]["SpotPriceDKK"])
         time_local = datetime.datetime.strptime(r.json()["records"][pos]["HourDK"], "%Y-%m-%dT%H:%M:%S")
         dps = r.json()["records"][pos]["SpotPriceDKK"]
-        client.datapoints.insert([(time_local, dps)], external_id="spotprice_el_Skive")
+        client.time_series.data.insert([(time_local, dps)], external_id="spotprice_el_Skive")
