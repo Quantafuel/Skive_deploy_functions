@@ -7,6 +7,7 @@ Created on Fri Mar 31 10:23:43 2023
 
 
 def handle(client):
+    # Finds the last days electrical cost
     import datetime
 
     from datetime import timedelta
