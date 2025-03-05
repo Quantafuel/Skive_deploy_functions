@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_daily_electrical_consumption
+          - Skive_spot_price
     steps:
       - uses: actions/checkout@v2
 
