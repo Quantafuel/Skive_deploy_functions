@@ -110,7 +110,7 @@ def handle(client):
         data["start_time"] = pd.Timestamp(year=2023, month=2, day=14, hour=7)
 
     client.assets.list(limit=1)
-    data_all = client.datapoints.retrieve_dataframe(
+    data_all = client.time_series.data.retrieve_dataframe(
         external_id=all_ts_list,
         start=data["start_time"],
         end=data["end_time"],
@@ -295,7 +295,7 @@ def handle(client):
         count += 4 * dps_len
 
     if dps_len > 0:
-        client.datapoints.insert_dataframe(df_all, external_id_headers=True, dropna=True)
+        client.time_series.data.insert_dataframe(df_all, external_id_headers=True, dropna=True)
 
     print(f"{count} datapoints written")
     return count

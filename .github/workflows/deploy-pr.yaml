@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_spot_price
+          - Skive_speed_parameter
     steps:
       - uses: actions/checkout@v2
 
