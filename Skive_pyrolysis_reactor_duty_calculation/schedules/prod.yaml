@@ -1,0 +1,2 @@
+- name: Production numbers for R&D
+  cron: "0 */1 * * *"
