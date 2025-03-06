@@ -76,6 +76,7 @@ def handle(data, client):
                 HeaderList.append(str(key))
 
     # %% Extracing data
+
     data_all = client.time_series.data.retrieve_dataframe(
         external_id=all_ts_list,
         start=data["start_time"],
