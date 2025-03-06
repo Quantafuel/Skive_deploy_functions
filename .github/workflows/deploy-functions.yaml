@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_pyrolysis_reactor_duty_calculation"
+      deploy_folders: "Skive_powder_dosing"
       trigger_deploy_all_folders: "common"
 
   deploy:
