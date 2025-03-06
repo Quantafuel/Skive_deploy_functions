@@ -144,6 +144,7 @@ def handle(client):
     if dps_len > 0:
         client.time_series.data.insert_dataframe(df_all, external_id_headers=True, dropna=True)
 
+
     count = dps_len * 8
 
     print(f"{count} datapoints written")
