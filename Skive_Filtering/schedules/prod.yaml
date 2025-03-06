@@ -1,0 +1,360 @@
+- name: UA_EP103
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP103"
+    start_time: "4h-ago"
+- name: New_Oil_produced_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Oil_produced_1"
+    start_time: "4h-ago"
+- name: UA_EP303
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP303"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_1"
+    start_time: "4h-ago"
+- name: Old_Plastic_feed
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Old_Plastic_feed"
+    start_time: "4h-ago"
+- name: New_NCG_produced_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_NCG_produced_4"
+    start_time: "4h-ago"
+- name: New_NCG_produced_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_NCG_produced_1"
+    start_time: "4h-ago"
+- name: Oil_Yield_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Oil_Yield_3"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_tot_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_tot_2"
+    start_time: "4h-ago"
+- name: New_Oil_produced_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Oil_produced_4"
+    start_time: "4h-ago"
+- name: Oil_Yield_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Oil_Yield_1"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_tot_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_tot_1"
+    start_time: "4h-ago"
+- name: UA_EP302
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP302"
+    start_time: "4h-ago"
+- name: New_Water_separated_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Water_separated_4"
+    start_time: "4h-ago"
+- name: New_NCG_produced_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_NCG_produced_2"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_tot_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_tot_4"
+    start_time: "4h-ago"
+- name: UA_EP203
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP203"
+    start_time: "4h-ago"
+- name: New_Oil_produced_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Oil_produced_3"
+    start_time: "4h-ago"
+- name: UA_EP403
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP403"
+    start_time: "4h-ago"
+- name: UA_EP202
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP202"
+    start_time: "4h-ago"
+- name: New_NCG_produced_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_NCG_produced_3"
+    start_time: "4h-ago"
+- name: Oil_produced
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Oil_produced"
+    start_time: "4h-ago"
+- name: New_Water_separated_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Water_separated_3"
+    start_time: "4h-ago"
+- name: Oil_Yield_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Oil_Yield_2"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_tot_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_tot_3"
+    start_time: "4h-ago"
+- name: New_Water_separated_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Water_separated_2"
+    start_time: "4h-ago"
+- name: New_Water_separated_1
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Water_separated_1"
+    start_time: "4h-ago"
+- name: New_Oil_produced_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Oil_produced_2"
+    start_time: "4h-ago"
+- name: UA_EP102
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP102"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_3
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_3"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_2
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_2"
+    start_time: "4h-ago"
+- name: New_Plastic_feed_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "New_Plastic_feed_4"
+    start_time: "4h-ago"
+- name: Oil_Yield_4
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Oil_Yield_4"
+    start_time: "4h-ago"
+- name: UA_EP402
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "UA_EP402"
+    start_time: "4h-ago"
+- name: Water_separated
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Water_separated"
+    start_time: "4h-ago"
+- name: Plastic_feed
+  cron: "*/15 * * * *"
+  data:
+    agg: "average"
+    end_time: "now"
+    filter_order: 121
+    filter_type: "moving_average"
+    gran: "1m"
+    input_timeseries: "Plastic_feed"
+    start_time: "4h-ago"

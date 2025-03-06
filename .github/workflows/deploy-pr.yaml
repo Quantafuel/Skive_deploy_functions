@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_CO2_Dashboard
+          - Skive_Filtering
     steps:
       - uses: actions/checkout@v2
 
