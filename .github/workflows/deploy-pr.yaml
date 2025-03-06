@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_NIR_Scanner_Data
+          - Skive_Cooling_Capacity_Calc
     steps:
       - uses: actions/checkout@v2
 
