@@ -55,7 +55,7 @@ def handle(client):
     all_ts_list.extend(data["Cumul_Pwdr_4"].copy())
 
     client.assets.list(limit=1)
-    data_all = client.datapoints.retrieve_dataframe(
+    data_all = client.time_series.data.retrieve_dataframe(
         external_id=all_ts_list,
         start=data["start_time"],
         end=data["end_time"],
@@ -92,7 +92,7 @@ def handle(client):
         if np.isnan(data_all[column][0]):
             try:
                 data_all[column][0] = (
-                    client.datapoints.retrieve_latest(external_id=data[column], before=data["start_time"])
+                    client.time_series.data.retrieve_latest(external_id=data[column], before=data["start_time"])
                     .to_pandas()
                     .iloc[0, 0]
                 )
@@ -134,15 +134,9 @@ def handle(client):
         }
     )
 
-    # for line in ['1', '2', '3', '4']:
-
-    # resp_pr = client.time_series.retrieve(external_id="Powder_rate_" + line,)
-    # resp_cp = client.time_series.retrieve(external_id="Cumulative_Powder_" + line,)
-    # create_timeseries_per_line(client, line, resp_pr, resp_cp)
-
     dps_len = len(df_all)
     if dps_len > 0:
-        client.datapoints.insert_dataframe(df_all, external_id_headers=True, dropna=True)
+        client.time_series.data.insert_dataframe(df_all, external_id_headers=True, dropna=True)
 
     count = dps_len * 8
 
