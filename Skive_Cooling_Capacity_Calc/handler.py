@@ -76,7 +76,8 @@ def handle(data, client):
                 HeaderList.append(str(key))
 
     # %% Extracing data
-    data_all = client.datapoints.retrieve_dataframe(
+
+    data_all = client.time_series.data.retrieve_dataframe(
         external_id=all_ts_list,
         start=data["start_time"],
         end=data["end_time"],
@@ -90,7 +91,9 @@ def handle(data, client):
     # %% Filtring data
     for column in data_all.columns:
         if np.isnan(data_all[column][0]):
-            data_all[column][0] = client.datapoints.retrieve_latest(external_id=data[column]).to_pandas().iloc[0, 0]
+            data_all[column][0] = (
+                client.time_series.data.retrieve_latest(external_id=data[column]).to_pandas().iloc[0, 0]
+            )
 
     data_all[data_all < 1] = 0  # Removing noise
     data_all = data_all.fillna(method="ffill")
