@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_Cooling_Capacity_Calc"
+      deploy_folders: "Skive_CO2_Dashboard"
       trigger_deploy_all_folders: "common"
 
   deploy:

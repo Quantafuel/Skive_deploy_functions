@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_Cooling_Capacity_Calc
+          - Skive_CO2_Dashboard
     steps:
       - uses: actions/checkout@v2
 
