@@ -134,16 +134,9 @@ def handle(client):
         }
     )
 
-    # for line in ['1', '2', '3', '4']:
-
-    # resp_pr = client.time_series.retrieve(external_id="Powder_rate_" + line,)
-    # resp_cp = client.time_series.retrieve(external_id="Cumulative_Powder_" + line,)
-    # create_timeseries_per_line(client, line, resp_pr, resp_cp)
-
     dps_len = len(df_all)
     if dps_len > 0:
         client.time_series.data.insert_dataframe(df_all, external_id_headers=True, dropna=True)
-
 
     count = dps_len * 8
 
