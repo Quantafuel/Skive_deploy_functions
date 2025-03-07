@@ -13,6 +13,23 @@ def handle(client):
         "2s=P02_INFD_PLAST_M_KG",
         "2s=P03_INFD_PLAST_M_KG",
         "2s=P04_INFD_PLAST_M_KG",
+        "2s=P10_ETG_GL002_M_ENC_POS",
+        "2s=P01_EKG_BF604:M_MID",
+        "2s=P01_EKG_QN613:M_POS",
+        "2s=P01_QJD_BF603:M_MID",
+        "2s=P01_QJD_QN606:M_POS",
+        "2s=P02_EKG_BF604:M_MID",
+        "2s=P02_EKG_QN613:M_POS",
+        "2s=P02_QJD_BF603:M_MID",
+        "2s=P02_QJD_QN606:M_POS",
+        "2s=P03_EKG_BF604:M_MID",
+        "2s=P03_EKG_QN613:M_POS",
+        "2s=P03_QJD_BF603:M_MID",
+        "2s=P03_QJD_QN606:M_POS",
+        "2s=P04_EKG_BF604:M_MID",
+        "2s=P04_EKG_QN613:M_POS",
+        "2s=P04_QJD_BF603:M_MID",
+        "2s=P04_QJD_QN606:M_POS",
     ]
 
     minutes_ago = 10
