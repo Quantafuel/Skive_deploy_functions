@@ -8,7 +8,7 @@ Created on Tue Nov 26 10:04:53 2024
 # from cog_client import client
 
 
-def handle(secrets, client):
+def handle(data, secrets, client):
     """
     [requirements]
     datetime
@@ -743,6 +743,7 @@ def handle(secrets, client):
                 "Light_fraction_from_EP08": math.floor(sulzer_ep08_column),
                 "Middle_fraction_EP05": math.floor(sulzer_ep05_column),
                 "Heavy_fraction_EP06": math.floor(sulzer_ep06_column),
+                "CPI": False,
             }
         ),
     )
