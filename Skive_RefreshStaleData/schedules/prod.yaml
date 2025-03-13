@@ -1,0 +1,3 @@
+- name: Refresh Data
+  cron: "/15 * * * *"
+  data:
