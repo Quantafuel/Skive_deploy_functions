@@ -108,7 +108,7 @@ def monitor_function(client):
     # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
     results = []
-    results.append(2)
+    results.append(3)
 
     # Timestamps
     now = datetime.now()

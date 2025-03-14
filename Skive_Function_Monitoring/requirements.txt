@@ -1,4 +1,3 @@
-cognite.logger
 datetime
 pandas
 yaml
