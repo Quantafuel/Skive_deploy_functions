@@ -12,6 +12,7 @@ import yaml
 
 from cognite.client.data_classes import ExtractionPipelineRun
 
+
 # static variables
 functionName = "Function Monitor"
 
@@ -50,7 +51,7 @@ def handle(client, data):
         # msg = f"Function: {functionName}: failed - message: {repr(e)} - {tb}"
         msg = f"Function: {functionName}: failed - message:"
         # print(f"[FAILED] {msg}")
-        
+
         # message sent to the extraction pipeline could only be 1000 char - so make sure it's not longer.
         if len(msg) > 1000:
             msg = msg[0:995] + "..."
@@ -97,6 +98,7 @@ def get_input_data(client, data):
     else:
         print(f"[INFO] VIP_functions not found in input configuration in pipeline {extractionPipelineExtId}")
 
+
 #
 #  monitoring function -
 #
@@ -106,7 +108,7 @@ def monitor_function(client):
     # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
     results = []
-    results.append(1)
+    results.append(2)
 
     # Timestamps
     now = datetime.now()
