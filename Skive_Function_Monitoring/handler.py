@@ -114,4 +114,4 @@ def handle(client, data):
         return {"error": e.__str__(), "status": "failed"}
 
     print(f"[FINISHED] {functionName} : {msg}")
-    return {"status": "succeeded"}
+    # return {"status": "succeeded"}
