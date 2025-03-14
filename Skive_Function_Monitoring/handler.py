@@ -24,8 +24,6 @@ def handle(client, data):
 
     msg = ""
     print(f"[STARTING] {functionName}")
-    print(f"[INFO] Cognite Client login status: {client.login.status()}")
-
     print("[STARTING] Extracting input data")
     try:
         #
