@@ -5,7 +5,6 @@ Created on Thu Mar 13 11:32:28 2025
 @author: Henrik.Rost.Breivik
 """
 
-
 def handle(client, data):
 
     from datetime import datetime, timedelta
