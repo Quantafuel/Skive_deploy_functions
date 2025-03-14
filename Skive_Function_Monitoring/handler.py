@@ -43,7 +43,7 @@ def handle(client, data):
         try:
             pipeline_config_str = client.extraction_pipelines.config.retrieve(extractionPipelineExtId)
             if pipeline_config_str and pipeline_config_str != "":
-                data = yaml.safe_load(pipeline_config_str.config)["data"]
+                data_yconfig = yaml.safe_load(pipeline_config_str.config)["data"]
             else:
                 raise Exception("No configuration found in pipeline")
         except Exception as e:
@@ -52,8 +52,8 @@ def handle(client, data):
         # Read the configuration provided as part of the Extraction pipeline configuration
         print(f"[INFO] Config from pipeline: {extractionPipelineExtId} - data: {data}")
 
-        if "VIP_functions" in data:
-            VIP_functions = data["VIP_functions"]
+        if "VIP_functions" in data_yconfig:
+            VIP_functions = data_yconfig["VIP_functions"]
             print(f"[INFO] VIP_functions: {VIP_functions}")
         else:
             print(f"[INFO] VIP_functions not found in input configuration in pipeline {extractionPipelineExtId}")
