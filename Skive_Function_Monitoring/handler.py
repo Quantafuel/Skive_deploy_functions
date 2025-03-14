@@ -5,10 +5,6 @@ Created on Thu Mar 13 11:32:28 2025
 @author: Henrik.Rost.Breivik
 """
 
-# import traceback
-
-# import arrow
-# import numpy as np
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -66,7 +62,6 @@ def handle(client, data):
         return {"error": e.__str__(), "status": "failed"}
 
     print(f"[FINISHED] {functionName} : {msg}")
-
     return {"status": "succeeded"}
 
 
@@ -112,7 +107,7 @@ def monitor_function(client):
     # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
     results = []
-    results.append(0)
+    results.append(1)
 
     # Timestamps
     now = datetime.now()
@@ -131,21 +126,6 @@ def monitor_function(client):
     print(time_dict)
 
     print(f"[START] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
-
-    # logger.info(
-    #    f"[INFO] For calculation use, amplitude: {amplitude} (cure hight) and periods: {period} (number of curves)"
-    # )
-
-    # Create time series
-    # Note: we delete the time_series in this example just to keep it simple to view and test the function.
-    # client.time_series.create(
-    #    TimeSeries(
-    #        name=ts_name,
-    #        external_id=ts_external_id,
-    #        description="Function sine_wave generated time series",
-    #        data_set_id=ExtPipe.data_set_id,
-    #    )
-    # )
 
     print(f"[FINISHED] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
 
