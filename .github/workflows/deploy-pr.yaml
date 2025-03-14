@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_Function_Monitoring
+          - Skive_counters_to_inextia
     steps:
       - uses: actions/checkout@v2
 
