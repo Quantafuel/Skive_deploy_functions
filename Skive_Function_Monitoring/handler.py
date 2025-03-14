@@ -5,26 +5,13 @@ Created on Thu Mar 13 11:32:28 2025
 @author: Henrik.Rost.Breivik
 """
 
-import logging
-import traceback
-
-# import arrow
-# import numpy as np
 from datetime import datetime, timedelta
 
 import pandas as pd
 import yaml
 
 from cognite.client.data_classes import ExtractionPipelineRun
-from cognite.logger import configure_logger
 
-
-# Configure application logger (only done ONCE):
-configure_logger(logger_name="func", log_json=False, log_level="INFO")
-
-# The following line must be added to all python modules (after imports):
-logger = logging.getLogger(f"func.{__name__}")
-logger.info("---------------------------------------START--------------------------------------------")
 
 # static variables
 functionName = "Function Monitor"
@@ -36,15 +23,15 @@ VIP_functions = []
 
 def handle(client, data):
     msg = ""
-    logger.info(f"[STARTING] {functionName}")
-    logger.info(f"[INFO] Cognite Client login status: {client.login.status()}")
+    print(f"[STARTING] {functionName}")
+    print(f"[INFO] Cognite Client login status: {client.login.status()}")
 
-    logger.info("[STARTING] Extracting input data")
+    print("[STARTING] Extracting input data")
     try:
         get_input_data(client, data)
-        logger.info("[FINISHED] Extracting input parameters")
+        print("[FINISHED] Extracting input parameters")
     except Exception as e:
-        logger.error(f"[FAILED] Get state from last run. Error: {e}")
+        print(f"[FAILED] Get state from last run. Error: {e}")
         raise e
 
     try:
@@ -60,9 +47,11 @@ def handle(client, data):
             ExtractionPipelineRun(status="success", message=msg, external_id=extractionPipelineExtId)
         )
     except Exception as e:
-        tb = traceback.format_exc()
-        msg = f"Function: {functionName}: failed - message: {repr(e)} - {tb}"
-        logger.info(f"[FAILED] {msg}")
+        # tb = traceback.format_exc()
+        # msg = f"Function: {functionName}: failed - message: {repr(e)} - {tb}"
+        msg = f"Function: {functionName}: failed - message:"
+        # print(f"[FAILED] {msg}")
+
         # message sent to the extraction pipeline could only be 1000 char - so make sure it's not longer.
         if len(msg) > 1000:
             msg = msg[0:995] + "..."
@@ -73,8 +62,7 @@ def handle(client, data):
         )
         return {"error": e.__str__(), "status": "failed"}
 
-    logger.info(f"[FINISHED] {functionName} : {msg}")
-
+    print(f"[FINISHED] {functionName} : {msg}")
     return {"status": "succeeded"}
 
 
@@ -89,7 +77,7 @@ def get_input_data(client, data):
     if "ExtractionPipelineExtId" in data:
         extractionPipelineExtId = data["ExtractionPipelineExtId"]
     else:
-        logger.info("[INFO] ExtractionPipelineExtId not found in input function configuration, using default value:")
+        print("[INFO] ExtractionPipelineExtId not found in input function configuration, using default value:")
 
     # Connect to the Extraction pipeline to read the function configuration
     try:
@@ -99,16 +87,16 @@ def get_input_data(client, data):
         else:
             raise Exception("No configuration found in pipeline")
     except Exception as e:
-        logger.error(f"[ERROR] Not able to load pipeline : {extractionPipelineExtId} configuration - {e}")
+        print(f"[ERROR] Not able to load pipeline : {extractionPipelineExtId} configuration - {e}")
 
     # Read the configuration provided as part of the Extraction pipeline configuration
-    logger.info(f"[INFO] Config from pipeline: {extractionPipelineExtId} - data: {data}")
+    print(f"[INFO] Config from pipeline: {extractionPipelineExtId} - data: {data}")
 
     if "VIP_functions" in data:
         VIP_functions = data["VIP_functions"]
-        logger.info(f"[INFO] VIP_functions: {VIP_functions}")
+        print(f"[INFO] VIP_functions: {VIP_functions}")
     else:
-        logger.info(f"[INFO] VIP_functions not found in input configuration in pipeline {extractionPipelineExtId}")
+        print(f"[INFO] VIP_functions not found in input configuration in pipeline {extractionPipelineExtId}")
 
 
 #
@@ -120,7 +108,7 @@ def monitor_function(client):
     # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
     results = []
-    results.append(0)
+    results.append(2)
 
     # Timestamps
     now = datetime.now()
@@ -138,23 +126,8 @@ def monitor_function(client):
     time_dict = {"min": td_ago_ts_ms, "max": now_rounded_ts_ms}
     print(time_dict)
 
-    logger.info(f"[START] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
+    print(f"[START] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
 
-    # logger.info(
-    #    f"[INFO] For calculation use, amplitude: {amplitude} (cure hight) and periods: {period} (number of curves)"
-    # )
-
-    # Create time series
-    # Note: we delete the time_series in this example just to keep it simple to view and test the function.
-    # client.time_series.create(
-    #    TimeSeries(
-    #        name=ts_name,
-    #        external_id=ts_external_id,
-    #        description="Function sine_wave generated time series",
-    #        data_set_id=ExtPipe.data_set_id,
-    #    )
-    # )
-
-    logger.info(f"[FINISHED] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
+    print(f"[FINISHED] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
 
     return results
