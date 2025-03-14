@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_counters_to_inextia"
+      deploy_folders: "Skive_Function_Monitoring"
       trigger_deploy_all_folders: "common"
 
   deploy:
