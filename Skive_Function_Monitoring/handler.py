@@ -70,7 +70,7 @@ def handle(client, data):
         # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
         results = []
-        results.append(4)
+        results.append(5)
 
         # Timestamps
         now = datetime.now()
