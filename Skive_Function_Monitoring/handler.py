@@ -34,15 +34,19 @@ def handle(client, data):
         # Need this value to find the function configuration provided as part of the Extraction pipelines
         if "ExtractionPipelineExtId" in data:
             extractionPipelineExtId = data["ExtractionPipelineExtId"]
+            print(extractionPipelineExtId)
         else:
             print("[INFO] ExtractionPipelineExtId not found in input function configuration, using default value:")
 
         # Connect to the Extraction pipeline to read the function configuration
         try:
             pipeline_config_str = client.extraction_pipelines.config.retrieve(extractionPipelineExtId)
+            print(pipeline_config_str.config)
             if pipeline_config_str and pipeline_config_str != "":
                 data_yconfig = yaml.safe_load(pipeline_config_str.config)["data"]
+                print("Data loaded from pipeline")
             else:
+                print("Data not loaded from pipeline")
                 raise Exception("No configuration found in pipeline")
         except Exception as e:
             print(f"[ERROR] Not able to load pipeline : {extractionPipelineExtId} configuration - {e}")
