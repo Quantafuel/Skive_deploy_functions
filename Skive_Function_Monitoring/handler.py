@@ -16,10 +16,12 @@ def handle(client, data):
     from cognite.client.data_classes import ExtractionPipelineRun
 
     # static variables
-    functionName = "Function Monitor"
+    functionName = "Function_Monitoring"
 
     # Global variables with default values
-    extractionPipelineExtId = "Skive_function_call_monitor"
+    # extractionPipelineExtId = "Skive_function_call_monitor"
+    extractionPipelineExtId = ""
+    VIP_Pipe_ExtId = ""
     VIP_functions = []
     data_yconfig = []
 
@@ -62,6 +64,12 @@ def handle(client, data):
         else:
             print(f"[INFO] VIP_functions not found in input configuration in pipeline {extractionPipelineExtId}")
 
+        if "VIP_Pipe_ExtId" in data_yconfig and data_yconfig != []:
+            VIP_Pipe_ExtId = data_yconfig["VIP_Pipe_ExtId"]
+            print(f"[INFO] VIP_Pipe_ExtId: {VIP_Pipe_ExtId}")
+        else:
+            print(f"[INFO] VIP_Pipe_ExtId not found in input configuration in pipeline {extractionPipelineExtId}")
+
         print("[FINISHED] Extracting input parameters")
     except Exception as e:
         print(f"[FAILED] Get state from last run. Error: {e}")
@@ -69,7 +77,7 @@ def handle(client, data):
 
     try:
         # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
-
+        print("Testprint igjen")
         num_calls = 0
         tot_num_fails = 0
         tot_num_success = 0
@@ -92,7 +100,7 @@ def handle(client, data):
 
         time_dict = {"min": td_ago_ts_ms, "max": now_rounded_ts_ms}
 
-        print(f"[START] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
+        print(f"[START] Monitoring functions calls started between {td_ago} and {now_rounded_dt}")
 
         functions_list = client.functions.list()
 
@@ -110,6 +118,13 @@ def handle(client, data):
                     tot_num_fails += 1
                     local_num_fails += 1
 
+                    if i in VIP_functions:
+                        print(f"VIP function failed: {i}")
+                        # Write error and message back to vip extraction pipeline
+                        client.extraction_pipelines.runs.create(
+                            ExtractionPipelineRun(status="failure", message=msg, extpipe_external_id=VIP_Pipe_ExtId)
+                        )
+
             results.append([i, local_num_success, local_num_fails])
             num_calls += len(calls_list)
 
@@ -117,8 +132,8 @@ def handle(client, data):
         print(f"Number of successes: {tot_num_success}")
         print(f"Number of fails: {tot_num_fails}")
 
-        print(f"[FINISHED] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
-        msg = f"Function: {functionName}: complete"
+        print(f"[FINISHED] Monitoring functions calls started between {td_ago} and {now_rounded_dt}")
+        msg = f"Function: {functionName} - complete. Number of function calls monitored: {num_calls}"
 
         # Write status and message back to extraction pipeline
         client.extraction_pipelines.runs.create(
@@ -127,7 +142,7 @@ def handle(client, data):
     except Exception as e:
         # tb = traceback.format_exc()
         # msg = f"Function: {functionName}: failed - message: {repr(e)} - {tb}"
-        msg = f"Function: {functionName}: failed - message:"
+        msg = f"Function: {functionName} - failed - message:"
         # print(f"[FAILED] {msg}")
 
         # message sent to the extraction pipeline could only be 1000 char - so make sure it's not longer.
