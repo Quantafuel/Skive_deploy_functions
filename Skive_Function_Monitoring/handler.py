@@ -83,6 +83,8 @@ def handle(client, data):
         tot_num_success = 0
         local_num_fails = 0
         local_num_success = 0
+        vip_results = []
+        vip_fails = 0
         results = []
 
         # Timestamps
@@ -120,13 +122,27 @@ def handle(client, data):
 
                     if i in VIP_functions:
                         print(f"VIP function failed: {i}")
-                        # Write error and message back to vip extraction pipeline
-                        client.extraction_pipelines.runs.create(
-                            ExtractionPipelineRun(status="failure", message=msg, extpipe_external_id=VIP_Pipe_ExtId)
-                        )
 
             results.append([i, local_num_success, local_num_fails])
             num_calls += len(calls_list)
+
+            if i in VIP_functions:
+                vip_results.append([i, local_num_success, local_num_fails])
+
+        for j in vip_results:
+            vip_fails += j[2]
+
+        if vip_fails == 0:
+            msg = "All VIP Functions ran without fail"
+            client.extraction_pipelines.runs.create(
+                ExtractionPipelineRun(status="success", message=msg, extpipe_external_id=VIP_Pipe_ExtId)
+            )
+        else:
+            # Write error and message back to vip extraction pipeline
+            msg = "VIP Functions ran with >0 failures"
+            client.extraction_pipelines.runs.create(
+                ExtractionPipelineRun(status="failure", message=msg, extpipe_external_id=VIP_Pipe_ExtId)
+            )
 
         print(f"Number of function calls: {num_calls}")
         print(f"Number of successes: {tot_num_success}")
