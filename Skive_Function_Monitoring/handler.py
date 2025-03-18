@@ -92,8 +92,8 @@ def handle(client, data):
         msg = f"Function: {functionName}: complete"
 
         # Write status and message back to extraction pipeline
-        client.extraction_pipeline_runs.create(
-            ExtractionPipelineRun(status="success", message=msg, external_id=extractionPipelineExtId)
+        client.extraction_pipelines.runs.create(
+            ExtractionPipelineRun(status="success", message=msg, extpipe_external_id=extractionPipelineExtId)
         )
     except Exception as e:
         # tb = traceback.format_exc()
@@ -106,8 +106,8 @@ def handle(client, data):
             msg = msg[0:995] + "..."
 
         # Write error and message back to extraction pipeline
-        client.extraction_pipeline_runs.create(
-            ExtractionPipelineRun(status="failure", message=msg, external_id=extractionPipelineExtId)
+        client.extraction_pipelines.runs.create(
+            ExtractionPipelineRun(status="failure", message=msg, extpipe_external_id=extractionPipelineExtId)
         )
         return {"error": e.__str__(), "status": "failed"}
 
