@@ -76,8 +76,6 @@ def handle(client, data):
         raise e
 
     try:
-        # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
-        print("Testprint igjen")
         num_calls = 0
         tot_num_fails = 0
         tot_num_success = 0
@@ -122,6 +120,8 @@ def handle(client, data):
 
                     if i in VIP_functions:
                         print(f"VIP function failed: {i}")
+                    else:
+                        print(f"Function failed: {i}")
 
             results.append([i, local_num_success, local_num_fails])
             num_calls += len(calls_list)
