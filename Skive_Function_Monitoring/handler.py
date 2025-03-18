@@ -21,10 +21,12 @@ def handle(client, data):
     # Global variables with default values
     extractionPipelineExtId = "Skive_function_call_monitor"
     VIP_functions = []
+    data_yconfig = []
 
     msg = ""
     print(f"[STARTING] {functionName}")
     print("[STARTING] Extracting input data")
+
     try:
         #
         # read input data from data block extracted from the Extraction Pipeline Configuration
@@ -52,9 +54,9 @@ def handle(client, data):
             print(f"[ERROR] Not able to load pipeline : {extractionPipelineExtId} configuration - {e}")
 
         # Read the configuration provided as part of the Extraction pipeline configuration
-        print(f"[INFO] Config from pipeline: {extractionPipelineExtId} - data: {data}")
+        print(f"[INFO] Config from pipeline: {extractionPipelineExtId} - data: {data_yconfig}")
 
-        if "VIP_functions" in data_yconfig:
+        if "VIP_functions" in data_yconfig and data_yconfig != []:
             VIP_functions = data_yconfig["VIP_functions"]
             print(f"[INFO] VIP_functions: {VIP_functions}")
         else:
@@ -66,13 +68,14 @@ def handle(client, data):
         raise e
 
     try:
-        # Calculate new output / time series data points based on input data
-        # startDate, num_points = sine_calcutation(client)
-        # Get the data set ID, used to connect the time series created
         # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
 
+        num_calls = 0
+        tot_num_fails = 0
+        tot_num_success = 0
+        local_num_fails = 0
+        local_num_success = 0
         results = []
-        results.append(8)
 
         # Timestamps
         now = datetime.now()
@@ -88,9 +91,31 @@ def handle(client, data):
         td_ago_ts_ms = int(td_ago_ts * 1000)
 
         time_dict = {"min": td_ago_ts_ms, "max": now_rounded_ts_ms}
-        print(time_dict)
 
         print(f"[START] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
+
+        functions_list = client.functions.list()
+
+        for i in functions_list._external_id_to_item:
+            calls_list = client.functions.calls.list(function_external_id=i, start_time=time_dict, limit=None)
+            local_num_fails = 0
+            local_num_success = 0
+
+            for k in calls_list._id_to_item:
+                call = client.functions.calls.retrieve(call_id=k, function_external_id=i)
+                if call.status == "Completed":
+                    tot_num_success += 1
+                    local_num_success += 1
+                if call.status == "Failed":
+                    tot_num_fails += 1
+                    local_num_fails += 1
+
+            results.append([i, local_num_success, local_num_fails])
+            num_calls += len(calls_list)
+
+        print(f"Number of function calls: {num_calls}")
+        print(f"Number of successes: {tot_num_success}")
+        print(f"Number of fails: {tot_num_fails}")
 
         print(f"[FINISHED] Monitoring functions calls started between {now_rounded_dt} and {td_ago}")
         msg = f"Function: {functionName}: complete"
