@@ -77,7 +77,7 @@ def handle(client, data):
 
     try:
         # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
-
+        print("Testprint")
         num_calls = 0
         tot_num_fails = 0
         tot_num_success = 0
