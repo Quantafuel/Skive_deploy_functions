@@ -77,7 +77,7 @@ def handle(client, data):
 
     try:
         # ExtPipe = client.extraction_pipelines.retrieve(external_id=extractionPipelineExtId)
-        print("Testprint")
+        print("Testprint igjen")
         num_calls = 0
         tot_num_fails = 0
         tot_num_success = 0
@@ -134,7 +134,7 @@ def handle(client, data):
 
         print(f"[FINISHED] Monitoring functions calls started between {td_ago} and {now_rounded_dt}")
         msg = f"Function: {functionName} - complete. Number of function calls monitored: {num_calls}"
-        
+
         # Write status and message back to extraction pipeline
         client.extraction_pipelines.runs.create(
             ExtractionPipelineRun(status="success", message=msg, extpipe_external_id=extractionPipelineExtId)
