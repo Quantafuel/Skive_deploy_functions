@@ -102,7 +102,7 @@ def handle(client, data):
 
         print(f"[START] Monitoring functions calls started between {td_ago} and {now_rounded_dt}")
 
-        functions_list = client.functions.list()
+        functions_list = client.functions.list(limit=None)
 
         for i in functions_list._external_id_to_item:
             calls_list = client.functions.calls.list(function_external_id=i, start_time=time_dict, limit=None)
