@@ -137,7 +137,7 @@ def handle(client, secrets):
 
         def get_list_data(self, lists, list_name):
             """
-
+            Fetches all data from a given Microsoft List by name.
 
             Parameters
             ----------
@@ -149,7 +149,7 @@ def handle(client, secrets):
             Returns
             -------
             LIST
-                Returns list of data from the given list name
+                Returns a list of all data from the specified list.
 
             """
             headers = {"Authorization": f"Bearer {self.access_token}"}
@@ -158,18 +158,27 @@ def handle(client, secrets):
             # for key, value in list_dict.items():
             #     print(key)
             list_id = list_dict.get(list_name)
-            # print(list_id)
-            # site_id = "your-sharepoint-site-id"
-            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?expand=fields"
-            response_list = requests.get(url, headers=headers)
-            # print(response_list)
-            if response_list.status_code == 200:
-                response_json = response_list.json()
-                # print(json.dumps(response_json, indent=4))
-            else:
-                print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
 
-            return response_json.get("value")
+            if not list_id:
+                print(f"List '{list_name}' not found")
+
+            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?expand=fields"
+
+            all_items = []
+            while url:
+                response_list = requests.get(url, headers=headers)
+                # print(response_list)
+                if response_list.status_code == 200:
+                    data = response_list.json()
+                    all_items.extend(data.get("value", []))
+
+                    url = data.get("@odata.nextLink")
+                    # print(json.dumps(response_json, indent=4))
+                else:
+                    print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
+                    return []
+            print(f"Total items fetched from '{list_name}': {len(all_items)}")
+            return all_items
 
         def update_forecast_table(self, forecast_list):
             """
@@ -257,10 +266,10 @@ def handle(client, secrets):
                             "Line4Feedstock": entry.get("fields").get("L4_x0020_Feedstock"),
                             "Line4OilToHoldingTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Hold"),
                             "Line4OilToStorageTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Stor"),
-                            "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_Time"),
+                            "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_TIme"),
                             "Line4State": entry.get("fields").get("L4_x0020_State"),
                             "Line4Utilization": entry.get("fields").get("L4_x0020_Utilization"),
-                            "Description": entry.get("fields").get("Tot_x0020_Feedstock"),
+                            "TotalFeedstock": entry.get("fields").get("Tot_x0020_Feedstock"),
                             "TotalOilToHoldingTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Hol"),
                             "TotalOilToStorageTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Sto"),
                             "TotalProductionTime": entry.get("fields").get("Tot_x0020_Production_x0020_Time"),
