@@ -137,7 +137,7 @@ def handle(client, secrets):
 
         def get_list_data(self, lists, list_name):
             """
-
+            Fetches all data from a given Microsoft List by name.
 
             Parameters
             ----------
@@ -149,7 +149,8 @@ def handle(client, secrets):
             Returns
             -------
             LIST
-                Returns list of data from the given list name
+
+                Returns a list of all data from the specified list.
 
             """
             headers = {"Authorization": f"Bearer {self.access_token}"}
@@ -158,18 +159,27 @@ def handle(client, secrets):
             # for key, value in list_dict.items():
             #     print(key)
             list_id = list_dict.get(list_name)
-            # print(list_id)
-            # site_id = "your-sharepoint-site-id"
-            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?expand=fields"
-            response_list = requests.get(url, headers=headers)
-            # print(response_list)
-            if response_list.status_code == 200:
-                response_json = response_list.json()
-                # print(json.dumps(response_json, indent=4))
-            else:
-                print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
 
-            return response_json.get("value")
+            if not list_id:
+                print(f"List '{list_name}' not found")
+
+            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?expand=fields"
+
+            all_items = []
+            while url:
+                response_list = requests.get(url, headers=headers)
+                # print(response_list)
+                if response_list.status_code == 200:
+                    data = response_list.json()
+                    all_items.extend(data.get("value", []))
+
+                    url = data.get("@odata.nextLink")
+                    # print(json.dumps(response_json, indent=4))
+                else:
+                    print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
+                    return []
+            print(f"Total items fetched from '{list_name}': {len(all_items)}")
+            return all_items
 
         def update_forecast_table(self, forecast_list):
             """
@@ -189,45 +199,6 @@ def handle(client, secrets):
             # data = []
             tb_rows = []
             for entry in forecast_list:
-                # data.append({"key": entry.get("fields").get("id"),
-                #         "Line1Availability": entry.get("fields").get("L1_x0020_Availability"),
-                #         "Line1Feedstock": entry.get("fields").get("L1_x0020_Feedstock"),
-                #         "Line1OilToHoldingTank": entry.get("fields").get("L1_x0020_Oil_x0020_to_x0020_Hold"),
-                #         "Line1OilToStorageTank": entry.get("fields").get("L1_x0020_Oil_x0020_to_x0020_Stor"),
-                #         "Line1ProductionTime": entry.get("fields").get("L1_x0020_Production_x0020_Time"),
-                #         "Line1State": entry.get("fields").get("L1_x0020_State"),
-                #         "Line1Utilization": entry.get("fields").get("L1_x0020_Utilization"),
-                #         "Line2Availability": entry.get("fields").get("L2_x0020_Availability"),
-                #         "Line2Feedstock": entry.get("fields").get("L2_x0020_Feedstock"),
-                #         "Line2OilToHoldingTank": entry.get("fields").get("L2_x0020_Oil_x0020_to_x0020_Hold"),
-                #         "Line2OilToStorageTank": entry.get("fields").get("L2_x0020_Oil_x0020_to_x0020_Stor"),
-                #         "Line2ProductionTime": entry.get("fields").get("L2_x0020_Production_x0020_Time"),
-                #         "Line2State": entry.get("fields").get("L2_x0020_State"),
-                #         "Line2Utilization": entry.get("fields").get("L2_x0020_Utilization"),
-                #         "Line3Availability": entry.get("fields").get("L3_x0020_Availability"),
-                #         "Line3Feedstock": entry.get("fields").get("L3_x0020_Feedstock"),
-                #         "Line3OilToHoldingTank": entry.get("fields").get("L3_x0020_Oil_x0020_to_x0020_Hold"),
-                #         "Line3OilToStorageTank": entry.get("fields").get("L3_x0020_Oil_x0020_to_x0020_Stor"),
-                #         "Line3ProductionTime": entry.get("fields").get("L3_x0020_Production_x0020_Time"),
-                #         "Line3State": entry.get("fields").get("L3_x0020_State"),
-                #         "Line3Utilization": entry.get("fields").get("L3_x0020_Utilization"),
-                #         "Line4Availability": entry.get("fields").get("L4_x0020_Availability"),
-                #         "Line4Feedstock": entry.get("fields").get("L4_x0020_Feedstock"),
-                #         "Line4OilToHoldingTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Hold"),
-                #         "Line4OilToStorageTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Stor"),
-                #         "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_Time"),
-                #         "Line4State": entry.get("fields").get("L4_x0020_State"),
-                #         "Line4Utilization": entry.get("fields").get("L4_x0020_Utilization"),
-                #         "Description": entry.get("fields").get("Tot_x0020_Feedstock"),
-                #         "TotalOilToHoldingTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Hol"),
-                #         "TotalOilToStorageTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Sto"),
-                #         "TotalProductionTime": entry.get("fields").get("Tot_x0020_Production_x0020_Time"),
-                #         "AvailabilityOverall": entry.get("fields").get("Availability_x0020_Overall"),
-                #         "DistillationEfficiency": entry.get("fields").get("Distillation_x0020_Efficiency"),
-                #         "FeedstockWaterContent": entry.get("fields").get("Feedstock_x0020_Water_x0020_Cont"),
-                #         "Date": entry.get("fields").get("Forecast_x0020_Date"),
-                #         "YieldDry": entry.get("fields").get("Yield_dry"),
-                #         })
                 tb_rows.append(
                     RowWrite(
                         key=entry.get("fields").get("id"),
@@ -257,10 +228,10 @@ def handle(client, secrets):
                             "Line4Feedstock": entry.get("fields").get("L4_x0020_Feedstock"),
                             "Line4OilToHoldingTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Hold"),
                             "Line4OilToStorageTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Stor"),
-                            "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_Time"),
+                            "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_TIme"),
                             "Line4State": entry.get("fields").get("L4_x0020_State"),
                             "Line4Utilization": entry.get("fields").get("L4_x0020_Utilization"),
-                            "Description": entry.get("fields").get("Tot_x0020_Feedstock"),
+                            "TotalFeedstock": entry.get("fields").get("Tot_x0020_Feedstock"),
                             "TotalOilToHoldingTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Hol"),
                             "TotalOilToStorageTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Sto"),
                             "TotalProductionTime": entry.get("fields").get("Tot_x0020_Production_x0020_Time"),
@@ -275,7 +246,6 @@ def handle(client, secrets):
 
             client.raw.rows.insert("production_forecast_db", "forecast_tb_new", tb_rows)
             print("Production forecast raw table updated")
-            # forecast_df = pd.DataFrame(data)
 
             return tb_rows
 

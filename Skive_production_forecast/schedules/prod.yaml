@@ -1,3 +1,2 @@
 - name: CoolingCap
-  cron: "* 1 * * *"
-  data:
+  cron: "0 6 * * *"
