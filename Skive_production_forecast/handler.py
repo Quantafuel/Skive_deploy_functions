@@ -160,7 +160,6 @@ def handle(client, secrets):
             #     print(key)
             list_id = list_dict.get(list_name)
 
-
             if not list_id:
                 print(f"List '{list_name}' not found")
 
@@ -181,7 +180,6 @@ def handle(client, secrets):
                     return []
             print(f"Total items fetched from '{list_name}': {len(all_items)}")
             return all_items
-
 
         def update_forecast_table(self, forecast_list):
             """
@@ -269,12 +267,10 @@ def handle(client, secrets):
                             "Line4Feedstock": entry.get("fields").get("L4_x0020_Feedstock"),
                             "Line4OilToHoldingTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Hold"),
                             "Line4OilToStorageTank": entry.get("fields").get("L4_x0020_Oil_x0020_to_x0020_Stor"),
-
                             "Line4ProductionTime": entry.get("fields").get("L4_x0020_Production_x0020_TIme"),
                             "Line4State": entry.get("fields").get("L4_x0020_State"),
                             "Line4Utilization": entry.get("fields").get("L4_x0020_Utilization"),
                             "TotalFeedstock": entry.get("fields").get("Tot_x0020_Feedstock"),
-
                             "TotalOilToHoldingTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Hol"),
                             "TotalOilToStorageTank": entry.get("fields").get("Tot_x0020_Oil_x0020_to_x0020_Sto"),
                             "TotalProductionTime": entry.get("fields").get("Tot_x0020_Production_x0020_Time"),
