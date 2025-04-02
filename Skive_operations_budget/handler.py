@@ -196,6 +196,7 @@ def handle(client, secrets):
                 Returns a Pandas DataFrame containing the mapping parameters.
 
             """
+
             # data = []
             tb_rows = []
             for entry in forecast_list:
@@ -214,8 +215,11 @@ def handle(client, secrets):
                     )
                 )
 
+            row_list = client.raw.rows.list("production_forecast_db", "operations_budget_tb", limit=None)
+            for row in row_list:
+                client.raw.rows.delete("production_forecast_db", "operations_budget_tb", row.key)
             client.raw.rows.insert("production_forecast_db", "operations_budget_tb", tb_rows)
-            print("Production forecast raw table updated")
+            print("Operations budget raw table updated")
 
             return tb_rows
 
