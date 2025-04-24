@@ -1,2 +1,2 @@
 - name: Skive KPI daily run
-  cron: "0 1 * * *"
+  cron: "2 22 * * *"

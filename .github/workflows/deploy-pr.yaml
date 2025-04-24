@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_operations_budget
+          - Skive_Event_Creator_for_Production_Report
     steps:
       - uses: actions/checkout@v2
 
