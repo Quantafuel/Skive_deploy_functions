@@ -9,6 +9,7 @@ Created on Wed Mar 26 15:48:01 2025
 def handle(client, secrets):
     import requests
 
+    # from cog_client import client
     from cognite.client.data_classes import RowWrite
 
     CLIENT_ID = secrets.get("lists-id")
@@ -174,7 +175,7 @@ def handle(client, secrets):
                     all_items.extend(data.get("value", []))
 
                     url = data.get("@odata.nextLink")
-                    # print(json.dumps(response_json, indent=4))
+                    # print(json.dumps(all_items, indent=4))
                 else:
                     print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
                     return []
@@ -187,13 +188,13 @@ def handle(client, secrets):
 
             Parameters
             ----------
-            mapping_list : list
-                Contains the response from the sample point list for Lab.
+            forecast_list : list
+                Contains the response from the get_list_data call
 
             Returns
             -------
-            sample_df : DataFrame
-                Returns a Pandas DataFrame containing the mapping parameters.
+            tb_rows : list
+                Returns a list containing operations budget rows
 
             """
 
@@ -204,8 +205,10 @@ def handle(client, secrets):
                     RowWrite(
                         key=entry.get("fields").get("id"),
                         columns={
+                            "FinancialYear": entry.get("fields").get("Financial_x0020_Year"),
                             "Month": entry.get("fields").get("Month"),
-                            "InfeedDry": entry.get("fields").get("InfeedDry"),
+                            "InfeedWet": entry.get("fields").get("Infeed"),
+                            "InfeedDry": entry.get("fields").get("Infeed_x0020_Dry_x0020_Calc"),
                             "Throughput": entry.get("fields").get("Throughput"),
                             "Availability": entry.get("fields").get("Availability"),
                             "OverallUtilization": entry.get("fields").get("OverallUtilization"),

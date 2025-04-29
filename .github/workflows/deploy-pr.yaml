@@ -9,6 +9,7 @@ jobs:
       matrix:
         function:
           - Skive_drain_data
+          - Skive_operations_budget
     steps:
       - uses: actions/checkout@v2
 
