@@ -162,16 +162,22 @@ def handle(secrets, client):
             list_id = list_dict.get(list_name)
             # print(list_id)
             # site_id = "your-sharepoint-site-id"
+            all_items = []
             url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?expand=fields"
-            response_list = requests.get(url, headers=headers)
-            # print(response_list)
-            if response_list.status_code == 200:
-                response_json = response_list.json()
-                # print(json.dumps(response_json, indent=4))
-            else:
-                print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
 
-            return response_json.get("value")
+            while url:
+                response_list = requests.get(url, headers=headers)
+                # print(response_list)
+                if response_list.status_code == 200:
+                    response_json = response_list.json()
+                    items = response_json.get("value", [])
+                    all_items.extend(items)
+                    url = response_json.get("@odata.nextLink", None)
+                    # print(json.dumps(response_json, indent=4))
+                else:
+                    print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
+
+            return all_items
 
         def create_12h_drain_df(self, list_12hours):
             """
