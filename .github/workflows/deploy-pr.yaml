@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_drain_data
-          - Skive_operations_budget
+          - Skive_lab_data_from_sharepoint
     steps:
       - uses: actions/checkout@v2
 
