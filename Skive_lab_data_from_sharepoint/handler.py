@@ -356,6 +356,7 @@ def handle(secrets, client):
                         "FlashPoint": entry.get("fields").get("FlashPoint"),
                         "Sulphur": entry.get("fields").get("Sulphur"),
                         "Chlorine": entry.get("fields").get("Chlorine"),
+                        "LowerHeatingValue": entry.get("fields").get("LowerHeatingValue"),
                         "Comment": entry.get("fields").get("Comment"),
                         "Created_by": entry.get("fields").get("AuthorLookupId"),
                     }
