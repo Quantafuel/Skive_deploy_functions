@@ -1,0 +1,2 @@
+- name: Upload simdist files from sharepoint to cdf
+  cron: "0 6 * * *"
