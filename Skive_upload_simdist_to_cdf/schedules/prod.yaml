@@ -1,2 +1,2 @@
 - name: Upload simdist files schedule
-  cron: "0 7 * * *"
+  cron: "0 * * * *"
