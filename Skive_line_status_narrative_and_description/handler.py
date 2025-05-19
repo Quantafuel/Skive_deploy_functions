@@ -364,6 +364,11 @@ def handle(secrets, client):
                 client.time_series.data.insert(
                     [(datetime.now(), status_dict["COOLDOWN"])], external_id="LIVE_STATUS_LINE_" + str(i + 1)
                 )
+            else:
+                line_list[i] = "STANDBY"
+                client.time_series.data.insert(
+                    [(datetime.now(), status_dict["STANDBY"])], external_id="LIVE_STATUS_LINE_" + str(i + 1)
+                )
         elif pump == 5:
             print("pump = 5", pump)
             line_list[i] = "RUNNING"
