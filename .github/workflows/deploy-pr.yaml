@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_lab_data_from_sharepoint
+          - Skive_upload_simdist_to_cdf
     steps:
       - uses: actions/checkout@v2
 
