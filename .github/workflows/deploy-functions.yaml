@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_upload_simdist_to_cdf"
+      deploy_folders: "Skive_simdist_extraction"
       trigger_deploy_all_folders: "common"
 
   deploy:
