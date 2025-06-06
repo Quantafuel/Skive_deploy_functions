@@ -9,6 +9,7 @@ Created on Tue May 13 12:39:38 2025
 
 from common.utilities import Sharepoint
 
+
 def handle(secrets, client):
 
     CLIENT_ID = secrets.get("lists-id")
@@ -16,6 +17,7 @@ def handle(secrets, client):
 
     sharepoint = Sharepoint("S-Skive470", CLIENT_ID, CLIENT_SECRET, client)
 
+    # get list ID
     lists_id = sharepoint.get_lists_id()
 
     # Get tag data from sharepoint
