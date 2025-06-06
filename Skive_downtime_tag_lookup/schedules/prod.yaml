@@ -1,0 +1,2 @@
+- name: Downtime register tag lookup schedule
+  cron: "0 * * * *"
