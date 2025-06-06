@@ -7,9 +7,10 @@ Created on Tue May 13 12:39:38 2025
 
 # from cog_client import client
 
+from common.utilities import Sharepoint
+
 
 def handle(secrets, client):
-    from common.utilities import Sharepoint
 
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
