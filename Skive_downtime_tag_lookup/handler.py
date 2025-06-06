@@ -18,6 +18,7 @@ def handle(secrets, client):
 
     lists_id = sharepoint.get_lists_id()
 
+    # Get tag data from sharepoint
     tag_lookup_data = sharepoint.get_list_data(lists_id, "TagLookup")
 
     # Add tags to raw
