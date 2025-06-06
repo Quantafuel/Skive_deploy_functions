@@ -9,7 +9,6 @@ Created on Tue May 13 12:39:38 2025
 
 from common.utilities import Sharepoint
 
-
 def handle(secrets, client):
 
     CLIENT_ID = secrets.get("lists-id")
