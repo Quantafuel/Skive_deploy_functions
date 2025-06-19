@@ -18,6 +18,7 @@ import pandas as pd
 
 # client = get_client()
 
+
 # Use the following if time series need to be deleted
 # client.time_series.delete(external_id="Old_Plastic_feed", ignore_unknown_ids=True)
 
@@ -25,6 +26,7 @@ import pandas as pd
 # %% Handle function
 def handle(data, client):
     # print(data)
+
     data = {
         "agg": "average",
         "start_time": "2h-ago",
