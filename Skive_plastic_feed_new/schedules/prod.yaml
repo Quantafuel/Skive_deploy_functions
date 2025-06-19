@@ -1,2 +1,3 @@
 - name: New_Plastic_Feed_schedule
   cron: "*/10 * * * *"
+  data:
