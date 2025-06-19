@@ -18,6 +18,7 @@ import pandas as pd
 
 # client = get_client()
 
+
 # Use the following if time series need to be deleted
 # client.time_series.delete(external_id="Old_Plastic_feed", ignore_unknown_ids=True)
 
@@ -25,6 +26,7 @@ import pandas as pd
 # %% Handle function
 def handle(data, client):
     # print(data)
+
     data = {
         "agg": "average",
         "start_time": "2h-ago",
@@ -82,6 +84,7 @@ def handle(data, client):
         "YT_FGIN3": ["2s=P03_RAA_TRC301_302_MTMP01:M_MID"],
         "YT_FGIN4": ["2s=P04_RAA_TRC401_402_MTMP01:M_MID"],
     }
+
     # Data with step-interpolation aggregation
     all_ts_list = data["LO_M1"].copy()
     all_ts_list.extend(data["LO_M2"].copy())
