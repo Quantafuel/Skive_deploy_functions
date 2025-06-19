@@ -82,6 +82,7 @@ def handle(data, client):
         "YT_FGIN3": ["2s=P03_RAA_TRC301_302_MTMP01:M_MID"],
         "YT_FGIN4": ["2s=P04_RAA_TRC401_402_MTMP01:M_MID"],
     }
+
     # Data with step-interpolation aggregation
     all_ts_list = data["LO_M1"].copy()
     all_ts_list.extend(data["LO_M2"].copy())
@@ -584,7 +585,7 @@ def handle(data, client):
             1 * deltaT.seconds / 3600
         )
     Output = Output.resample("1T").mean()
-    # breakpoint()
+
     # %% Exporting time series to CDF - Taken from handle.py of the original feed calculation cognite function
     df_all = pd.DataFrame(index=Output.index)
     count = 0
