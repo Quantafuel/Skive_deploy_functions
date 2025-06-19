@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_downtime_tag_lookup
+          - Skive_plastic_feed_new
     steps:
       - uses: actions/checkout@v2
 
