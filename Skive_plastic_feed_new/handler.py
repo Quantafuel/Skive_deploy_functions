@@ -224,14 +224,12 @@ def handle(data, client):
     data_all["Vpump4_old"] = data_all["Vpump4_old"].fillna(0)
 
     # %% Making sure all flows are non-negative
-    if data_all["Y3Fflow1"] < 0:
-        data_all["Y3Fflow1"] = 0
-    if data_all["Y3Fflow2"] < 0:
-        data_all["Y3Fflow2"] = 0
-    if data_all["Y3Fflow3"] < 0:
-        data_all["Y3Fflow3"] = 0
-    if data_all["Y3Fflow4"] < 0:
-        data_all["Y3Fflow4"] = 0
+    data_all.loc[data_all["Y3Fflow1"] < 0, "Y3Fflow1"] = 0
+    data_all.loc[data_all["Y3Fflow2"] < 0, "Y3Fflow2"] = 0
+    data_all.loc[data_all["Y3Fflow3"] < 0, "Y3Fflow3"] = 0
+    data_all.loc[data_all["Y3Fflow4"] < 0, "Y3Fflow4"] = 0
+
+    # %%
 
     # Retrieve latest datapoint if first datapoint of a timeseries is NaN
     for column in data_all.columns:
