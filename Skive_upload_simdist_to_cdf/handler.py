@@ -160,7 +160,7 @@ def handle(client, secrets):
                     break
 
                 data = list_response.json()
-                items = list_response.json()["value"]
+                items = data.get("value", [])
                 for item in items:
                     if "file" in item:
                         file_name = item["name"].split(".")[0] + "_simdist_report." + item["name"].split(".")[1]
