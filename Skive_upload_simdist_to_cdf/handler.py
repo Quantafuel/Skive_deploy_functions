@@ -151,9 +151,15 @@ def handle(client, secrets):
             list_url = f"https://graph.microsoft.com/v1.0/drives/{drive_id}/root:/{folder_path}:/children"
 
             headers = {"Authorization": f"Bearer {self.access_token}"}
-            list_response = requests.get(list_url, headers=headers)
-            if list_response.status_code == 200:
-                print("Success")
+
+            next_url = list_url
+            while next_url:
+                list_response = requests.get(next_url, headers=headers)
+                if list_response.status_code != 200:
+                    print("Error listing files:", list_response.status_code, list_response.text)
+                    break
+
+                data = list_response.json()
                 items = list_response.json()["value"]
                 for item in items:
                     if "file" in item:
@@ -176,9 +182,8 @@ def handle(client, secrets):
                                 print(f"Failed to download file {file_name}: {file_response.status_code}")
                             else:
                                 print(f"File {file_name} already uplaoded to CDF!")
-            else:
-                print("Error listing files:", list_response.status_code)
-                print(list_response.text)
+
+                next_url = data.get("@odata.nextLink")
 
     sharepoint = MSListData("S-Skive470")
     site_id = sharepoint.get_site_id("S-Skive470")
