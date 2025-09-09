@@ -167,17 +167,16 @@ def handle(client, secrets):
     site_id = sharepoint.get_site_id("S-Skive470")
     files = client.files.list(data_set_ids=8915881263906932, limit=None)
     drive_id = sharepoint.get_drive_id(site_id)
-    sharepoint_files = sharepoint.get_files_from_folder(drive_id)
-    files_in_sharepoint = []
-    for file in sharepoint_files:
-        files_in_sharepoint.append(file.get("name"))
+
+    sorted_files = sorted(files, key=lambda file: file.last_updated_time, reverse=True)
+    # last_updated_files = cdf_files_update_time[-3:]
+
+    last_updated_files = sorted_files[:3]
 
     try:
-        for file in files:
-            file_name = file.name
-            if file_name not in files_in_sharepoint:
-                file_content = client.files.download_bytes(id=file.id)
-                sharepoint.upload_file_to_sharepoint(drive_id, file_name, file_content)
-                print(file_name, "uploaded to sharepoint")
+        for file in last_updated_files:
+            file_content = client.files.download_bytes(id=file.id)
+            sharepoint.upload_file_to_sharepoint(drive_id, file.name, file_content)
+            print(file.name, "uploaded to sharepoint")
     except Exception as e:
         print("No files to upload:", e)
