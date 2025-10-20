@@ -50,6 +50,7 @@ def handle(data, client):
         return dps_len
 
 
+# Create time series
 def create_timeseries(data, client):
     from cognite.client.data_classes import TimeSeries
 
