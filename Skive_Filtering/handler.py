@@ -37,8 +37,8 @@ def handle(data, client):
         "filtered_df_name": list(filtered_df.columns),
     }
 
-    if resp is None:
-        resp = create_timeseries(data, client)
+    # if resp is None:
+    #     resp = create_timeseries(data, client)
 
     if dps_len > 0:
         client.time_series.data.insert_dataframe(filtered_df, external_id_headers=True)
@@ -51,16 +51,18 @@ def handle(data, client):
 
 
 # Create time series
-def create_timeseries(data, client):
-    from cognite.client.data_classes import TimeSeries
 
-    orig_ts = client.time_series.retrieve(external_id=data["input_timeseries"])
-    ts = TimeSeries(
-        external_id=data["input_timeseries"] + "_filtered",
-        name=data["input_timeseries"] + "_filtered",
-        metadata={"Info": "Calculated from cognite functions"},
-        asset_id=orig_ts.asset_id,
-        description="Filtered data of " + orig_ts.name,
-    )
-    resp = client.time_series.create(ts)
-    return resp
+# def create_timeseries(data, client):
+#     from cognite.client.data_classes import TimeSeries
+
+
+#     orig_ts = client.time_series.retrieve(external_id=data["input_timeseries"])
+#     ts = TimeSeries(
+#         external_id=data["input_timeseries"] + "_filtered",
+#         name=data["input_timeseries"] + "_filtered",
+#         metadata={"Info": "Calculated from cognite functions"},
+#         asset_id=orig_ts.asset_id,
+#         description="Filtered data of " + orig_ts.name,
+#     )
+#     resp = client.time_series.create(ts)
+#     return resp
