@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_upload_coa_to_sharepoint
+          - Skive_Filtering
 
     steps:
       - uses: actions/checkout@v2
