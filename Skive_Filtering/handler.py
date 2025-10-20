@@ -51,8 +51,10 @@ def handle(data, client):
 
 
 # Create time series
+
 # def create_timeseries(data, client):
 #     from cognite.client.data_classes import TimeSeries
+
 
 #     orig_ts = client.time_series.retrieve(external_id=data["input_timeseries"])
 #     ts = TimeSeries(
