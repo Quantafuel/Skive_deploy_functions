@@ -85,7 +85,7 @@ jobs:
           schedules_client_id: ${{ secrets.SCHEDULE_CLIENT_ID }}
           cdf_cluster: api
           cdf_project: quanta-dev
-          runtime: py39
+          runtime: py310
           await_deployment_success: true  # set to false to skip waiting for deployments entirely
 
           # Parameters we can read/extract automatically:
