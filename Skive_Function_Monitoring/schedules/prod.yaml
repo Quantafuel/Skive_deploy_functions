@@ -1,4 +1,4 @@
 - name: Function Monitor
-  cron: "*/10 * * * *"
+  cron: "*/5 * * * *"
   data:
     "ExtractionPipelineExtId": "Skive_function_call_monitor"

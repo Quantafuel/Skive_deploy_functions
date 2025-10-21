@@ -19,7 +19,6 @@ def handle(client, data):
     functionName = "Function_Monitoring"
 
     # Global variables with default values
-    # extractionPipelineExtId = "Skive_function_call_monitor"
     extractionPipelineExtId = ""
     VIP_Pipe_ExtId = ""
     VIP_functions = []
