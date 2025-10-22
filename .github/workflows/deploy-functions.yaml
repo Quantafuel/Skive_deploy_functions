@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_simdist_extraction"
+      deploy_folders: "Skive_update_lab_data_model"
       trigger_deploy_all_folders: "common"
 
   deploy:
