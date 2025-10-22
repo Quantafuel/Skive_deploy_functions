@@ -10,6 +10,7 @@ def handle(client):
 
     import csv
 
+    # from cog_client import client
     import pandas as pd
 
     from cognite.client.data_classes import RowWrite
@@ -33,6 +34,10 @@ def handle(client):
                 return ","
 
     files = client.files.list(data_set_ids=5883851598140017, limit=None)
+
+    files = sorted(files, key=lambda f: f.uploaded_time)
+
+    files = files[-20:]
 
     for file in files:
         if not file.name == "Lab data-source.json":
