@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_simdist_extraction
+          - Skive_update_lab_data_model
 
     steps:
       - uses: actions/checkout@v2
