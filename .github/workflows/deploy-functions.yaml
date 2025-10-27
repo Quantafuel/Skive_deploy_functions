@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_update_lab_data_model"
+      deploy_folders: "Skive_NIR_Scanner_Data"
       trigger_deploy_all_folders: "common"
 
   deploy:
