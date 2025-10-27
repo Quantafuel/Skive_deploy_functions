@@ -13,8 +13,21 @@
 
 
 # %% Total (8-19 february)
-def handle(data, client):
-
+def handle(client):
+    data = {
+        "ABS": "2s=TOMRA_MATERIAL_1",
+        "HDPE": "2s=TOMRA_MATERIAL_2",
+        "LDPE": "2s=TOMRA_MATERIAL_3",
+        "PET": "2s=TOMRA_MATERIAL_4",
+        "Plastic general": "2s=TOMRA_MATERIAL_5",
+        "PP": "2s=TOMRA_MATERIAL_6",
+        "PS": "2s=TOMRA_MATERIAL_7",
+        "PVC": "2s=TOMRA_MATERIAL_8",
+        "water": "2s=TOMRA_WATER_CONTENT_2:M_MID",
+        "peute": "schr_load_Peute_Folie",
+        "roaf": "schr_load_ROAF",
+        "total": "schr_load_Total_(Paprec)",
+    }
     df_peute = client.time_series.data.retrieve_dataframe(
         external_id=[
             data["ABS"],
