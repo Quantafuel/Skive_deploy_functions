@@ -14,6 +14,7 @@ def handle(client):
 
     lines = [1, 2, 3, 4]
     clusters = [1, 2, 3, 4, 5, 6]
+    # Fill runtimes per cluster
     for line in lines:
         cluster_run_times = []
         for cluster in clusters:
