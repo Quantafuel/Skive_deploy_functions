@@ -14,25 +14,11 @@ def handle(client):
 
     lines = [1, 2, 3, 4]
     clusters = [1, 2, 3, 4, 5, 6]
-
-    # for line in lines:
-    #     xid=f"hgf_total_run_time_line_{line}"
-    #     res = TimeSeriesWrite(name=f"HGF total run time line {line}", external_id=xid)
-    #     client.time_series.create(res)
+    # Fill runtimes per cluster
     for line in lines:
-        # xid_line=f"hgf_total_run_time_line_{line}"
-        # ranges_line = [{"external_id": xid_line, "start": "50w-ago", "end": "now"}]
-        # client.time_series.data.delete_ranges(ranges_line)
-        # print(f"Datapoints for line {line} deleted")
         cluster_run_times = []
-
         for cluster in clusters:
-
             xid = f"hgf_run_time_cluster_{line}_{cluster}"
-
-            # ranges = [{"external_id": xid, "start": "50w-ago", "end": "now"}]
-            # client.time_series.data.delete_ranges(ranges)
-            # print(f"Datapoints for cluster {line}.{cluster} deleted")
             try:
                 last_dp = client.time_series.data.retrieve_latest(external_id=xid)[0]
                 last_dp_value = last_dp.value
