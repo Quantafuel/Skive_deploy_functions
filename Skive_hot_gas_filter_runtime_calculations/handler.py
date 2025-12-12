@@ -7,39 +7,61 @@ Created on Fri Dec  5 12:52:18 2025
 
 
 def handle(client):
-    from datetime import datetime
+    from datetime import datetime, timezone
 
-    time_now = datetime.now()
-    time_now_ms = int(time_now.timestamp() * 1000)
+    LINES = [1, 2, 3, 4]
+    CLUSTERS = [1, 2, 3, 4, 5, 6]
 
-    lines = [1, 2, 3, 4]
-    clusters = [1, 2, 3, 4, 5, 6]
-    # Fill runtimes per cluster
-    for line in lines:
-        cluster_run_times = []
-        for cluster in clusters:
+    def update_line_and_clusters(line: int):
+        now = datetime.now(timezone.utc)
+        now_ms = int(now.timestamp() * 1000)
+
+        # -------------------------
+        # Get current line status
+        # -------------------------
+        try:
+            status_dp = client.time_series.data.retrieve_latest(external_id=f"LIVE_STATUS_LINE_{line}")[0]
+            is_running = status_dp.value == 6
+        except Exception as e:
+            print(e)
+            is_running = False
+
+        cluster_values = []
+
+        # -------------------------
+        # Update each cluster
+        # -------------------------
+        for cluster in CLUSTERS:
             xid = f"hgf_run_time_cluster_{line}_{cluster}"
+
             try:
                 last_dp = client.time_series.data.retrieve_latest(external_id=xid)[0]
-                last_dp_value = last_dp.value
-                last_dp_time_sec = last_dp.timestamp
+                last_value = float(last_dp.value)
+                last_time_ms = last_dp.timestamp
             except Exception as e:
-                last_dp_value = None
-                last_dp_time_sec = None
-                print(f"{xid}: no datapoints yet:", e)
-            if last_dp_value is None:
-                next_val = 0
-            else:
-                delta_seconds = (time_now_ms - last_dp_time_sec) / 1000
-                next_val = delta_seconds + last_dp_value
+                print(e)
+                last_value = 0.0
+                last_time_ms = now_ms
 
-            cluster_run_times.append(next_val)
+            delta_sec = (now_ms - last_time_ms) / 1000.0
 
-            client.time_series.data.insert(external_id=xid, datapoints=[(time_now_ms, next_val)])
+            next_value = last_value + delta_sec if is_running else last_value
 
-            print(f"Wrote {next_val:.2f} seconds to {xid} at {time_now_ms}")
+            client.time_series.data.insert(external_id=xid, datapoints=[(now_ms, next_value)])
+            print(f"Wrote {next_value:.2f} seconds to {xid}")
+            cluster_values.append(next_value)
+
+        # -------------------------
+        # Line runtime = min(cluster)
+        # -------------------------
+        line_runtime = min(cluster_values)
 
         client.time_series.data.insert(
-            external_id=f"hgf_total_run_time_line_{line}", datapoints=[(time_now_ms, min(cluster_run_times))]
+            external_id=f"hgf_total_run_time_line_{line}", datapoints=[(now_ms, line_runtime)]
         )
-        print(f"Wrote {min(cluster_run_times):.2f} seconds to hgf_total_run_time_line_{line} at {time_now_ms}")
+
+        return line_runtime
+
+    for line in LINES:
+        runtime = update_line_and_clusters(line)
+        print(f"Line {line}: total runtime = {runtime:.1f} s")
