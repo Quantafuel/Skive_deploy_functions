@@ -62,6 +62,7 @@ def handle(client):
 
         return line_runtime
 
+    # Run for all lines
     for line in LINES:
         runtime = update_line_and_clusters(line)
         print(f"Line {line}: total runtime = {runtime:.1f} s")
