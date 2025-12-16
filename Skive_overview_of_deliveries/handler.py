@@ -194,3 +194,4 @@ def handle(client, secrets):
 
     # Insert dataframe in raw
     client.raw.rows.insert_dataframe("deliveries_db", "deliveries_tb", df_deliveries)
+
