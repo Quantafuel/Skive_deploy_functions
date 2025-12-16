@@ -191,3 +191,6 @@ def handle(client, secrets):
     df_deliveries = df_deliveries.dropna(axis=0, subset=["Filling date"])
     df_deliveries["Filling date"] = df_deliveries["Filling date"].dt.strftime("%Y-%m-%d")
     df_deliveries["Dispatch date"] = df_deliveries["Dispatch date"].dt.strftime("%Y-%m-%d")
+
+    # Insert dataframe in raw
+    client.raw.rows.insert_dataframe("deliveries_db", "deliveries_tb", df_deliveries)
