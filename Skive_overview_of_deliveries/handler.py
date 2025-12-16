@@ -155,7 +155,7 @@ def handle(client, secrets):
             Returns
             -------
             file_content : BytesIO
-                DESCRIPTION.
+                Returns bytesio content from the file
 
             """
 
@@ -194,4 +194,3 @@ def handle(client, secrets):
 
     # Insert dataframe in raw
     client.raw.rows.insert_dataframe("deliveries_db", "deliveries_tb", df_deliveries)
-
