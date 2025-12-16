@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_hot_gas_filter_runtime_calculations
+          - Skive_overview_of_deliveries
 
     steps:
       - uses: actions/checkout@v2

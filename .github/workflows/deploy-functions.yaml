@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_hot_gas_filter_runtime_calculations"
+      deploy_folders: "Skive_overview_of_deliveries"
       trigger_deploy_all_folders: "common"
 
   deploy:
