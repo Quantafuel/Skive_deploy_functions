@@ -44,10 +44,10 @@ def handle(client, secrets):
 
         # Request payload
         payload = {
-            "grant_type": "client_credentials",  # Use "authorization_code" if using user-delegated permissions
+            "grant_type": "client_credentials",
             "client_id": CLIENT_ID,
             "client_secret": CLIENT_SECRET,
-            "scope": "https://graph.microsoft.com/.default",  # Use ".default" for application permissions
+            "scope": "https://graph.microsoft.com/.default",
         }
 
         # Class method to obtain the access token
@@ -140,6 +140,25 @@ def handle(client, secrets):
             return response
 
         def find_file_from_path(self, drive_id, folder_path, file_name):
+            """
+
+
+            Parameters
+            ----------
+            drive_id : str
+                DESCRIPTION.
+            folder_path : str
+                DESCRIPTION.
+            file_name : str
+                DESCRIPTION.
+
+            Returns
+            -------
+            file_content : BytesIO
+                DESCRIPTION.
+
+            """
+
             folder_path = "20 Supply and Procurement/12. Supply and Laboratory"
 
             list_url = f"https://graph.microsoft.com/v1.0/drives/{drive_id}/root:/{folder_path}:/children"
