@@ -178,7 +178,7 @@ def handle(client, secrets):
 
     sharepoint = MSListData("S-Skive470")
     folder_path = "20 Supply and Procurement/12. Supply and Laboratory"
-    file_name = "Overview over deliveries 2025.xlsx"
+    file_name = "Overview over deliveries 2026.xlsx"
 
     site_id = sharepoint.get_site_id("S-Skive470")
     # files = client.files.list(data_set_ids=8915881263906932, limit=None)
