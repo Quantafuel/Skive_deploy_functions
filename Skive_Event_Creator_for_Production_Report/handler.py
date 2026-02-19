@@ -30,12 +30,6 @@ def handle(data, secrets, client):
     # from cog_client import client
     from cognite.client.data_classes import Event
 
-    # type: ignore
-    # from dotenv import load_dotenv
-    # load_dotenv()
-    # CLIENT_ID = os.getenv("CLIENT_ID")
-    # CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 
@@ -444,8 +438,8 @@ def handle(data, secrets, client):
         "prodhours4": ["2s=L4_PRODUCTION_HOURS:Q_TT"],
         "plastfeed1": ["2s=P01_EAC_BW002_DFLC01:Q_TT"],
         "plastfeed2": ["2s=P02_EAC_BW002_DFLC01:Q_TT"],
-        "plastfeed3": ["2s=P03_EAC_BW002_DFLC01:Q_TT"],
-        "plastfeed4": ["2s=P04_EAC_BW002_DFLC01:Q_TT"],
+        "plastfeed3": ["2s=P03_EAC_ML301_DFLC01:Q_TT"],
+        "plastfeed4": ["2s=P04_EAC_ML401_DFLC01:Q_TT"],
         "CM101": ["2s=P01_EGG_BF103_DFLC01:Q_TT"],
         "CM201": ["2s=P02_EGG_BF203_DFLC01:Q_TT"],
         "CM301": ["2s=P03_EGG_BF303_DFLC01:Q_TT"],
