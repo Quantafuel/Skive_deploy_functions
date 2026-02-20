@@ -27,7 +27,6 @@ def handle(data, secrets, client):
     import pandas as pd
     import requests
 
-    # from cog_client import client
     from cognite.client.data_classes import Event
 
     CLIENT_ID = secrets.get("lists-id")
@@ -482,15 +481,26 @@ def handle(data, secrets, client):
     }
 
     def lastDayCounterValue(extId, yesterday_end):
+        def get_latest(extId, before_time):
+            df = client.time_series.data.retrieve_latest(external_id=extId, before=before_time).to_pandas()
+            if df is None or df.empty:
+                return None
+            return df.iloc[0, 0]
 
-        dps_first = (
-            client.time_series.data.retrieve_latest(external_id=extId, before=yesterday_end - timedelta(hours=24))
-            .to_pandas()
-            .iloc[0, 0]
-        )
-        dps_last = (
-            client.time_series.data.retrieve_latest(external_id=extId, before=yesterday_end).to_pandas().iloc[0, 0]
-        )
+        dps_first = get_latest(extId, yesterday_end - timedelta(hours=24))
+        dps_last = get_latest(extId, yesterday_end)
+
+        if dps_first is None or dps_last is None:
+            return 0
+
+        # dps_first = (
+        #     client.time_series.data.retrieve_latest(external_id=extId, before=yesterday_end - timedelta(hours=24))
+        #     .to_pandas()
+        #     .iloc[0, 0]
+        # )
+        # dps_last = (
+        #     client.time_series.data.retrieve_latest(external_id=extId, before=yesterday_end).to_pandas().iloc[0, 0]
+        # )
 
         return dps_last - dps_first
 
