@@ -22,6 +22,67 @@ import pandas as pd
 # Use the following if time series need to be deleted
 # client.time_series.delete(external_id="Old_Plastic_feed", ignore_unknown_ids=True)
 
+# data = {
+#     "agg": "average",
+#     "start_time": "2d-ago",
+#     "end_time": "now",
+#     "gran": "1m",
+#     "threshold_inscrew": 10,
+#     "threshold_Vpump": 3,
+#     "threshold_N2circ": 90,
+#     "threshold_cond_pump": 10,
+#     "threshold_fg_temp": 100,
+#     "ncg_density": 1.6,
+#     "NCGf": ["2s=P10_EKG_BF001_MFLW01:M_MID"],
+#     "NCGb1": ["2s=P01_EKG_BF604:M_MID"],
+#     "NCGb2": ["2s=P02_EKG_BF604:M_MID"],
+#     "NCGb3": ["2s=P03_EKG_BF604:M_MID"],
+#     "NCGb4": ["2s=P04_EKG_BF604:M_MID"],
+#     "LO_M1": ["2s=P11_EGG_BF924_MFLW01:M_MID"],
+#     "LO_M2": ["2s=P12_EGG_BF974_MFLW01:M_MID"],
+#     "HO1": ["2s=P01_EGG_BF102_MFLW01:M_MID"],
+#     "HO2": ["2s=P02_EGG_BF202_MFLW01:M_MID"],
+#     "HO3": ["2s=P03_EGG_BF302_MFLW01:M_MID"],
+#     "HO4": ["2s=P04_EGG_BF402_MFLW01:M_MID"],
+#     "HO_cond1": ["2s=P01_EGG_BF103_MFLW01:M_MID"],
+#     "HO_cond2": ["2s=P02_EGG_BF203_MFLW01:M_MID"],
+#     "HO_cond3": ["2s=P03_EGG_BF303_MFLW01:M_MID"],
+#     "HO_cond4": ["2s=P04_EGG_BF403_MFLW01:M_MID"],
+#     "W_M1": ["2s=P11_GNK_BF925_MFLW01:M_MID"],
+#     "W_M2": ["2s=P12_GNK_BF975_MFLW01:M_MID"],
+#     "Y3Fflow1": ["2s=P01_EGG_BF101_MFLW01:M_MID"],
+#     "Y3Fflow2": ["2s=P02_EGG_BF201_MFLW01:M_MID"],
+#     "Y3Fflow3": ["2s=P03_EGG_BF301_MFLW01:M_MID"],
+#     "Y3Fflow4": ["2s=P04_EGG_BF401_MFLW01:M_MID"],
+#     # The screw speed below is the second screw of the assembly, changed from the original YFeedIn!!
+#     "ScrewSpeed1": ["2s=P01EAC01GL002M102:M_HAST"],
+#     "ScrewSpeed2": ["2s=P02EAC02GL002M202:M_HAST"],
+#     "ScrewSpeed3": ["2s=P03EAC03GL002M302:M_HAST"],
+#     "ScrewSpeed4": ["2s=P04EAC04GL002M402:M_HAST"],
+#     "H&W_Feed3": ["2s=P03_KF11_M_FEEDRATE"],
+#     "H&W_Feed4": ["2s=P04_KF21_M_FEEDRATE"],
+#     "Vpump1_old": ["2s=P01_EGG_QN120:M_POS"],
+#     "Vpump2_old": ["2s=P02_EGG_QN220:M_POS"],
+#     "Vpump3_old": ["2s=P03_EGG_QN320:M_POS"],
+#     "Vpump4_old": ["2s=P04_EGG_QN420:M_POS"],
+#     "Vpump1_new": ["2s=P01_EGG_QN120A:M_POS"],
+#     "Vpump2_new": ["2s=P02_EGG_QN220A:M_POS"],
+#     "Vpump3_new": ["2s=P03_EGG_QN320A:M_POS"],
+#     "Vpump4_new": ["2s=P04_EGG_QN420A:M_POS"],
+#     "N2circ1": ["2s=P01_QJB_QN152:M_POS"],
+#     "N2circ2": ["2s=P02_QJB_QN252:M_POS"],
+#     "N2circ3": ["2s=P03_QJB_QN352:M_POS"],
+#     "N2circ4": ["2s=P04_QJB_QN452:M_POS"],
+#     "cond_pump1": ["2s=P01_EGG_GP101:M_SPD"],
+#     "cond_pump2": ["2s=P02_EGG_GP201:M_SPD"],
+#     "cond_pump3": ["2s=P03_EGG_GP301:M_SPD"],
+#     "cond_pump4": ["2s=P04_EGG_GP401:M_SPD"],
+#     "YT_FGIN1": ["2s=P01_RAA_TRC101_102_MTMP01:M_MID"],
+#     "YT_FGIN2": ["2s=P02_RAA_TRC201_202_MTMP01:M_MID"],
+#     "YT_FGIN3": ["2s=P03_RAA_TRC301_302_MTMP01:M_MID"],
+#     "YT_FGIN4": ["2s=P04_RAA_TRC401_402_MTMP01:M_MID"],
+# }
+
 
 # %% Handle function
 def handle(data, client):
@@ -59,10 +120,13 @@ def handle(data, client):
         "Y3Fflow2": ["2s=P02_EGG_BF201_MFLW01:M_MID"],
         "Y3Fflow3": ["2s=P03_EGG_BF301_MFLW01:M_MID"],
         "Y3Fflow4": ["2s=P04_EGG_BF401_MFLW01:M_MID"],
-        "YFeedIn1": ["2s=P01EAC01GL001M101:M_HAST"],
-        "YFeedIn2": ["2s=P02EAC02GL001M201:M_HAST"],
-        "YFeedIn3": ["2s=P03EAC03GL001M301:M_HAST"],
-        "YFeedIn4": ["2s=P04EAC04GL001M401:M_HAST"],
+        # The screw speed below is the second screw of the assembly, changed from the original YFeedIn!!
+        "ScrewSpeed1": ["2s=P01EAC01GL002M102:M_HAST"],
+        "ScrewSpeed2": ["2s=P02EAC02GL002M202:M_HAST"],
+        "ScrewSpeed3": ["2s=P03EAC03GL002M302:M_HAST"],
+        "ScrewSpeed4": ["2s=P04EAC04GL002M402:M_HAST"],
+        "H&W_Feed3": ["2s=P03_KF11_M_FEEDRATE"],
+        "H&W_Feed4": ["2s=P04_KF21_M_FEEDRATE"],
         "Vpump1_old": ["2s=P01_EGG_QN120:M_POS"],
         "Vpump2_old": ["2s=P02_EGG_QN220:M_POS"],
         "Vpump3_old": ["2s=P03_EGG_QN320:M_POS"],
@@ -98,10 +162,12 @@ def handle(data, client):
     all_ts_list.extend(data["HO_cond4"].copy())
     all_ts_list.extend(data["W_M1"].copy())
     all_ts_list.extend(data["W_M2"].copy())
-    all_ts_list.extend(data["YFeedIn1"].copy())
-    all_ts_list.extend(data["YFeedIn2"].copy())
-    all_ts_list.extend(data["YFeedIn3"].copy())
-    all_ts_list.extend(data["YFeedIn4"].copy())
+    all_ts_list.extend(data["ScrewSpeed1"].copy())
+    all_ts_list.extend(data["ScrewSpeed2"].copy())
+    all_ts_list.extend(data["ScrewSpeed3"].copy())
+    all_ts_list.extend(data["ScrewSpeed4"].copy())
+    all_ts_list.extend(data["H&W_Feed3"].copy())
+    all_ts_list.extend(data["H&W_Feed4"].copy())
     all_ts_list.extend(data["cond_pump1"].copy())
     all_ts_list.extend(data["cond_pump2"].copy())
     all_ts_list.extend(data["cond_pump3"].copy())
@@ -183,10 +249,12 @@ def handle(data, client):
         "HO_cond4",
         "W_M1",
         "W_M2",
-        "YFeedIn1",
-        "YFeedIn2",
-        "YFeedIn3",
-        "YFeedIn4",
+        "ScrewSpeed1",
+        "ScrewSpeed2",
+        "ScrewSpeed3",
+        "ScrewSpeed4",
+        "H&W_Feed3",
+        "H&W_Feed4",
         "cond_pump1",
         "cond_pump2",
         "cond_pump3",
@@ -273,7 +341,7 @@ def handle(data, client):
     data_all[["Status Line 1", "Status Line 2", "Status Line 3", "Status Line 4"]] = "Standby"
 
     for line in ["1", "2", "3", "4"]:
-        index1 = data_all[data_all["YFeedIn" + line] > threshold_inscrew].index
+        index1 = data_all[data_all["ScrewSpeed" + line] > threshold_inscrew].index
         index2 = data_all[data_all["Vpump" + line] > threshold_Vpump].index
         data_all.loc[(data_all.index.isin(index1)) & (data_all.index.isin(index2)), "Status Line " + line] = "Running"
 
@@ -388,7 +456,12 @@ def handle(data, client):
     )
 
     # In case the 3 phase flow measurement is wrong for a line, it will mess up the LO and/or NCG for the others
-    # For such datapoint, use the ratio of screw speed - assuming single speed parameter for all lines
+    # For such datapoint, use the ratio of screw speeds - assuming single speed parameter for all lines
+    # NOTE THAT THIS HAS BEEN UPDATED 2026-03-05, DUE TO H&W SYSTEM
+    # The screw speed has been replaced with the second screw, however, that one is normally tuned to the screw which uses a setpoint
+    # For LO, for M1, the screw speed is used, for M2, the actual feedrate from the weight cells of the H&W system is used
+    # For the NCG, the ratio of the screw speeds is used. It is uncertain whether this still is tuned to the screw under the hopper for L3 and L4 in the
+    # same way, however, as this is just a contingency to avoid crazy values, it is deemed good enough
     idx1 = pd.Series(data_all[(data_all["Y3Fflow1"] <= 10) & (data_all["Status Line 1"] == "Running")].index)
     idx2 = pd.Series(data_all[(data_all["Y3Fflow2"] <= 10) & (data_all["Status Line 2"] == "Running")].index)
     idx3 = pd.Series(data_all[(data_all["Y3Fflow3"] <= 10) & (data_all["Status Line 3"] == "Running")].index)
@@ -402,20 +475,23 @@ def handle(data, client):
 
     for line in ["1", "2", "3", "4"]:
         if (line == "1") or (line == "2"):
-            Ratio.loc[Ratio.index.isin(idxM1), "Ratio Line " + line] = data_all["YFeedIn" + line][
+            Ratio.loc[Ratio.index.isin(idxM1), "Ratio Line " + line] = data_all["ScrewSpeed" + line][
                 data_all.index.isin(idxM1)
-            ] / (data_all["YFeedIn1"][data_all.index.isin(idxM1)] + data_all["YFeedIn2"][data_all.index.isin(idxM1)])
+            ] / (
+                data_all["ScrewSpeed1"][data_all.index.isin(idxM1)]
+                + data_all["ScrewSpeed2"][data_all.index.isin(idxM1)]
+            )
         if (line == "3") or (line == "4"):
-            Ratio.loc[Ratio.index.isin(idxM2), "Ratio Line " + line] = data_all["YFeedIn" + line][
+            Ratio.loc[Ratio.index.isin(idxM2), "Ratio Line " + line] = data_all["H&W_Feed" + line][
                 data_all.index.isin(idxM2)
-            ] / (data_all["YFeedIn3"][data_all.index.isin(idxM2)] + data_all["YFeedIn4"][data_all.index.isin(idxM2)])
-        Ratio_NCG["Ratio_NCG Line " + line][Ratio_NCG.index.isin(idx)] = data_all["YFeedIn" + line][
+            ] / (data_all["H&W_Feed3"][data_all.index.isin(idxM2)] + data_all["H&W_Feed4"][data_all.index.isin(idxM2)])
+        Ratio_NCG["Ratio_NCG Line " + line][Ratio_NCG.index.isin(idx)] = data_all["ScrewSpeed" + line][
             data_all.index.isin(idx)
         ] / (
-            data_all["YFeedIn1"][data_all.index.isin(idx)]
-            + data_all["YFeedIn2"][data_all.index.isin(idx)]
-            + data_all["YFeedIn3"][data_all.index.isin(idx)]
-            + data_all["YFeedIn4"][data_all.index.isin(idx)]
+            data_all["ScrewSpeed1"][data_all.index.isin(idx)]
+            + data_all["ScrewSpeed2"][data_all.index.isin(idx)]
+            + data_all["ScrewSpeed3"][data_all.index.isin(idx)]
+            + data_all["ScrewSpeed4"][data_all.index.isin(idx)]
         )
 
     # Light Oil
@@ -651,7 +727,6 @@ def handle(data, client):
 
 
 # %% Time serie creation function
-# =============================================================================
 # def create_timeseries(client, line, pf, pf_tot, op, wp, ncg, sta, pf_3pf):
 #     asset = client.assets.retrieve(external_id="Quantafuel_Skive")
 #     if pf is None:
@@ -672,7 +747,7 @@ def handle(data, client):
 #             description="Calculated from the formula (Light_oil+Heavy_oil)",
 #         )
 #         resp = client.time_series.create(ts2)
-#
+
 #     if wp is None:
 #         ts3 = TimeSeries(
 #             external_id="New_Water_separated_" + str(line),
@@ -682,7 +757,7 @@ def handle(data, client):
 #             description="Water separated. Sum of 2s=P11_GNK_BF925_MFLW01:M_MID and '2s=P12_GNK_BF975_MFLW01:M_MID",
 #         )
 #         resp = client.time_series.create(ts3)
-#
+
 #     if ncg is None:
 #         ts4 = TimeSeries(
 #             external_id="New_NCG_produced_" + str(line),
@@ -710,7 +785,7 @@ def handle(data, client):
 #             description="Line status: 0 = standby, 1 = running",
 #         )
 #         resp = client.time_series.create(ts6)
-#
+
 #     # if ncgb is None:
 #     #     ts7 = TimeSeries(
 #     #         external_id="NCG_burner_" + str(line),
@@ -720,7 +795,7 @@ def handle(data, client):
 #     #         description="NCG to burner [kg/h], assuming density 1.6 kg/m3",
 #     #     )
 #     #     resp = client.time_series.create(ts7)
-#
+
 #     if pf_3pf is None:
 #         ts8 = TimeSeries(
 #             external_id="Plastic_feed_3PF_" + str(line),
@@ -730,9 +805,9 @@ def handle(data, client):
 #             description="Plastic feed based on 3P flow and HO+HHO. ACCOUNT FOR ASH IN DIFFERENT WAY!",
 #         )
 #         resp = client.time_series.create(ts8)
-#
-#
-# def create_timeseries_mod(client, mod, bal, inl, out):
+
+
+# # def create_timeseries_mod(client, mod, bal, inl, out):
 #     asset = client.assets.retrieve(external_id="Quantafuel_Skive")
 #     if bal is None:
 #         ts1 = TimeSeries(
@@ -743,7 +818,7 @@ def handle(data, client):
 #             description="Balance over the 3 phases separator for module " + mod,
 #         )
 #         resp = client.time_series.create(ts1)
-#
+
 #     if inl is None:
 #         ts2 = TimeSeries(
 #             external_id="Input_3P_sep_M" + mod,
@@ -753,7 +828,7 @@ def handle(data, client):
 #             description="Input to the 3 phases separator for module " + mod,
 #         )
 #         resp = client.time_series.create(ts2)
-#
+
 #     if out is None:
 #         ts3 = TimeSeries(
 #             external_id="Output_3P_sep_M" + mod,
@@ -763,8 +838,8 @@ def handle(data, client):
 #             description="Output to the 3 phases separator for module " + mod,
 #         )
 #         resp = client.time_series.create(ts3)
-#
-#
+
+
 # def create_timeseries_pfold(client, pfold):
 #     asset = client.assets.retrieve(external_id="Quantafuel_Skive")
 #     if pfold is None:
@@ -776,8 +851,8 @@ def handle(data, client):
 #             description="Old feed calculation",
 #         )
 #         resp = client.time_series.create(ts)
-#
-#
+
+
 # def create_timeseries_ncgf(client, ncgf):
 #     asset = client.assets.retrieve(external_id="Quantafuel_Skive")
 #     if ncgf is None:
@@ -789,7 +864,6 @@ def handle(data, client):
 #             description="NCG to flare [kg/h]",
 #         )
 #         resp = client.time_series.create(ts)
-#
-#
-# =============================================================================
+
+
 # handle(data, client)
