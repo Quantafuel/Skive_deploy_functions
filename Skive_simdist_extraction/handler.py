@@ -10,9 +10,9 @@ def handle(client):
 
     import csv
 
-    # from cog_client import client
     import pandas as pd
 
+    # from cog_client import client
     from cognite.client.data_classes import RowWrite
 
     def detect_delimiter(sample_line):
@@ -37,7 +37,7 @@ def handle(client):
 
     files = sorted(files, key=lambda f: f.uploaded_time)
 
-    files = files[-20:]
+    files = files[-100:]
 
     for file in files:
         if not file.name == "Lab data-source.json":
@@ -50,6 +50,7 @@ def handle(client):
                 print("Section 'Analysis Calculation Info' not found in file")
                 # analysis_section = content
                 remaining_text = ""
+                continue
             else:
                 # analysis_section = sections[0]
                 remaining_text = sections[1]
