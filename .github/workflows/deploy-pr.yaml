@@ -14,7 +14,6 @@ jobs:
           - Skive_production_forecast
           - Skive_upload_coa_to_sharepoint
           - Skive_upload_simdist_to_cdf
-
     steps:
       - uses: actions/checkout@v2
 
