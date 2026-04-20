@@ -13,6 +13,7 @@ def handle(secrets, client):
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 
+    # Sharepont list class
     class MSListData:
         """
         A class to represent Sharepoint list data in Skive. The class fetches data from Sharepoint lists in the Viridor domain
@@ -372,11 +373,14 @@ def handle(secrets, client):
             # sample_df["TestType"] = sample_df["TestType"].map(test_types_mapping_dict)
             # sample_df["SamplePointDescription"] = sample_df["SamplePointDescription"].map(sample_mapping_description_dict)
             client.raw.rows.insert_dataframe("lab_db", "manual_results_tb", manual_analysis_df)
+
             print("Manual analysis table inserted in raw")
+
             return manual_analysis_df
 
     LabLists = MSListData("S-Skive470")
 
+    # Updating tables
     lists = LabLists.get_lists_id()
     sample_list = LabLists.get_list_data(lists, "LAB_Test")
     sample_list_df = LabLists.sample_list_data(sample_list)
