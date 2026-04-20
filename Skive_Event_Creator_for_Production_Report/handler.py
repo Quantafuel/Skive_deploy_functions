@@ -5,8 +5,6 @@ Created on Tue Nov 26 10:04:53 2024
 @author: Espen.Nordsveen
 """
 
-# from cog_client import client
-
 
 def handle(data, secrets, client):
     """
@@ -32,7 +30,6 @@ def handle(data, secrets, client):
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 
-    # %%
     class DrainData:
         """
         A class to represent drain rounds in Skive. The class fetches data from Sharepoint lists in the Viridor domain
@@ -757,17 +754,3 @@ def handle(data, secrets, client):
         ),
     )
     client.events.create(data_event)
-
-
-# function_xid = "Skive_weekly_report_KPIs"
-# function_name = "Skive weekly report KPIs"
-
-# try:
-#     client.functions.delete(external_id=function_xid)
-#     print("Function deleted")
-# except Exception:
-#     print("No function to delete")
-
-# func = client.functions.create(external_id=function_xid, name=function_name, function_handle=handle)
-
-# print("Function created")

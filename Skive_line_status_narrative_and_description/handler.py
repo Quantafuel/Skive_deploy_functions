@@ -172,6 +172,7 @@ def handle(secrets, client):
 
             return response_json.get("value")
 
+        # Fetching status from sharepoint
         def create_line_narrative(self, production_status_list):
             events = client.events.list(
                 data_set_ids=6574982093948393, limit=None
@@ -290,6 +291,7 @@ def handle(secrets, client):
     four_minutes_ms = 4 * 60 * 1000
     status_dict = {"STANDSTILL": 1, "INERTING": 2, "STANDBY": 3, "COOLDOWN": 4, "STARTUP": 5, "RUNNING": 6}
 
+    # Checking pump status
     for pump in vacuum_line_list:
         if pump == 1:
             print("pump = 1")
