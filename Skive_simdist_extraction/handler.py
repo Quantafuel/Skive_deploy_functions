@@ -12,7 +12,6 @@ def handle(client):
 
     import pandas as pd
 
-    # from cog_client import client
     from cognite.client.data_classes import RowWrite
 
     def detect_delimiter(sample_line):
