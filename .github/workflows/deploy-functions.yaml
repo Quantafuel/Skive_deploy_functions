@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_lab_data_from_sharepoint"
+      deploy_folders: "Skive_line_status_narrative_and_description, Skive_operations_budget, Skive_overview_of_deliveries, Skive_production_forecast, Skive_upload_coa_to_sharepoint, Skive_upload_simdist_to_cdf"
       trigger_deploy_all_folders: "common"
 
   deploy:

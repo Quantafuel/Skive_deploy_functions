@@ -15,6 +15,7 @@ def handle(client, secrets):
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 
+    # Sharepoint list class
     class MSListData:
         """
         A class to represent Sharepoint list data in Skive. The class fetches data from Sharepoint lists in the Viridor domain
