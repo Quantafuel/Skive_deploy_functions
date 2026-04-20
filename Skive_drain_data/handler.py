@@ -12,7 +12,7 @@ def handle(secrets, client):
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 
-    # %%
+    # Sharepoint list class
     class DrainData:
         """
         A class to represent drain rounds in Skive. The class fetches data from Sharepoint lists in the Viridor domain
