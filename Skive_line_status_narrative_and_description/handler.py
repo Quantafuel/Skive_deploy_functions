@@ -15,7 +15,6 @@ def handle(secrets, client):
 
     from cognite.client.data_classes import Event
 
-    # Sharepoint list class
     class MSListData:
         """
         A class to represent data from MS Lists in Skive. The class fetches data from Sharepoint lists in the Viridor domain
