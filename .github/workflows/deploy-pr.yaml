@@ -9,7 +9,6 @@ jobs:
       matrix:
         function:
           - Skive_lab_data_from_sharepoint
-
     steps:
       - uses: actions/checkout@v2
 
