@@ -8,7 +8,8 @@ jobs:
     strategy:
       matrix:
         function:
-          - Skive_line_status_narrative_and_description
+          - Skive_lab_data_from_sharepoint
+          - Skive_drain_data
 
     steps:
       - uses: actions/checkout@v2
