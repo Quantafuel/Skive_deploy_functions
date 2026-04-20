@@ -10,8 +10,6 @@ def handle(secrets, client):
     import pandas as pd
     import requests
 
-    # from cog_client import client
-
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
 

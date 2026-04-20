@@ -1,5 +1,4 @@
 def handle(secrets, client):
-    #     # import os
     import uuid
 
     from datetime import datetime, time, timedelta, timezone
@@ -9,10 +8,6 @@ def handle(secrets, client):
     import requests
 
     from cognite.client.data_classes import Event
-
-    # type: ignore
-    # from dotenv import load_dotenv
-    # load_dotenv()
 
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
