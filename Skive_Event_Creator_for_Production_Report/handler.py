@@ -25,7 +25,7 @@ def handle(data, secrets, client):
     import pandas as pd
     import requests
 
-    from cognite.client.data_classes import Event
+    from cognite.client.data_classes import EventWrite
 
     CLIENT_ID = secrets.get("lists-id")
     CLIENT_SECRET = secrets.get("lists-secret")
@@ -686,7 +686,7 @@ def handle(data, secrets, client):
     # ash = (plastic_to_shredder_daily - sepwater1_dp - sepwater2_dp) * ash_ratio
 
     # %% One event for all
-    data_event = Event(
+    data_event = EventWrite(
         external_id="skive_daily_production_numbers" + str(uuid.uuid4()),
         data_set_id=6509329789873439,
         start_time=int(yesterday_end.timestamp() * 1000),
