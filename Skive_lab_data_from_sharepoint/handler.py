@@ -404,6 +404,7 @@ def handle(secrets, client):
                 )
 
             manual_analysis_df = pd.DataFrame(data)
+
             for col in manual_analysis_df.columns:
                 if pd.api.types.is_string_dtype(manual_analysis_df[col]):
                     manual_analysis_df[col].fillna("", inplace=True)  # eller pd.NA
