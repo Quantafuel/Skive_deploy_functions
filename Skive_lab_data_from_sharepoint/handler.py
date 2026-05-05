@@ -135,6 +135,29 @@ def handle(secrets, client):
 
             return lists
 
+        def get_list_columns(self, lists, list_name):
+            headers = {"Authorization": f"Bearer {self.access_token}"}
+
+            list_dict = {item.get("name"): item.get("id") for item in lists.get("value")}
+            # for key, value in list_dict.items():
+            #     print(key)
+            list_id = list_dict.get(list_name)
+            all_columns = []
+            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/columns"
+
+            while url:
+                response_list = requests.get(url, headers=headers)
+                # print(response_list)
+                if response_list.status_code == 200:
+                    response_json = response_list.json()
+                    items = response_json.get("value", [])
+                    all_columns.extend(items)
+                    url = response_json.get("@odata.nextLink", None)
+                else:
+                    print(f"Failed to fetch lists: {response_list.status_code}, {response_list.text}")
+
+            return all_columns
+
         def get_list_data(self, lists, list_name):
             """
 
@@ -159,7 +182,9 @@ def handle(secrets, client):
             #     print(key)
             list_id = list_dict.get(list_name)
             all_items = []
-            url = f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?$expand=fields"
+            url = (
+                f"https://graph.microsoft.com/v1.0/sites/{self.site_id}/lists/{list_id}/items?$expand=fields($select=*)"
+            )
 
             while url:
                 response_list = requests.get(url, headers=headers)
@@ -193,15 +218,19 @@ def handle(secrets, client):
             for entry in mapping_list:
                 data.append(
                     {
-                        "SamplePointId": entry.get("fields").get("SamplePointID"),
+                        "SamplePointId": entry.get("id"),
                         "LinkTitle": entry.get("fields").get("LinkTitle"),
                         "Description": entry.get("fields").get("Description"),
                     }
                 )
             sample_points_df = pd.DataFrame(data)
 
-            sample_points_df.fillna(0, inplace=True)
-
+            # sample_points_df.fillna(0, inplace=True)
+            for col in sample_points_df.columns:
+                if pd.api.types.is_string_dtype(sample_points_df[col]):
+                    sample_points_df[col].fillna("", inplace=True)  # eller pd.NA
+                else:
+                    sample_points_df[col].fillna(0, inplace=True)
             client.raw.rows.insert_dataframe("lab_db", "sample_points_tb", sample_points_df)
             print("Sample points table inserted in raw")
             return sample_points_df
@@ -273,10 +302,15 @@ def handle(secrets, client):
 
             sample_mapping_dict = dict(zip(sample_mapping["SamplePointId"], sample_mapping["LinkTitle"]))
 
-            sample_mapping_dict = {str(int(k)) if k.isdigit() else k: v for k, v in sample_mapping_dict.items()}
+            sample_mapping_dict = {
+                str(int(k)) if isinstance(k, str) and k.isdigit() else str(k): v
+                for k, v in sample_mapping_dict.items()
+                if k is not None
+            }
             sample_mapping_description_dict = dict(zip(sample_mapping["SamplePointId"], sample_mapping["Description"]))
             sample_mapping_description_dict = {
-                str(int(k)) if k.isdigit() else k: v for k, v in sample_mapping_description_dict.items()
+                str(int(k)) if isinstance(k, str) and k.isdigit() else str(k) if k is not None else None: v
+                for k, v in sample_mapping_description_dict.items()
             }
             test_types_mapping_dict = dict(zip(test_types_mapping["Id"], test_types_mapping["TestType"]))
 
@@ -296,12 +330,19 @@ def handle(secrets, client):
                 )
 
             sample_df = pd.DataFrame(data)
+            for entry in sample_points_list[:5]:
+                print(entry["fields"].keys())
             # sample_df["Date"] = pd.to_datetime(sample_df["Date"]).dt.tz_localize(None)
             # sample_df["Date"] = sample_df["Date"].apply(lambda x: x.timestamp() if pd.notnull(x) else 0)
             # sample_df.set_index("Date", inplace=True)
             sample_df.reset_index(drop=True, inplace=True)
             # sample_df.index = range(len(sample_df))
-            sample_df.fillna(0, inplace=True)
+            # sample_df.fillna(0, inplace=True)
+            for col in sample_df.columns:
+                if pd.api.types.is_string_dtype(sample_df[col]):
+                    sample_df[col].fillna("", inplace=True)  # eller pd.NA
+                else:
+                    sample_df[col].fillna(0, inplace=True)
             # drain_df["Sum"] = drain_df.sum(axis=1)
             sample_df["SamplePoint"] = sample_df["SamplePoint"].map(sample_mapping_dict)
             sample_df["TestType"] = sample_df["TestType"].map(test_types_mapping_dict)
@@ -355,6 +396,7 @@ def handle(secrets, client):
                         "FlashPoint": entry.get("fields").get("FlashPoint"),
                         "Sulphur": entry.get("fields").get("Sulphur"),
                         "Chlorine": entry.get("fields").get("Chlorine"),
+                        "FilteredChlorine": entry.get("fields").get("Filtered_x0020_Chlorine"),
                         "LowerHeatingValue": entry.get("fields").get("LowerHeatingValue"),
                         "Comment": entry.get("fields").get("Comment"),
                         "Created_by": entry.get("fields").get("AuthorLookupId"),
@@ -364,8 +406,12 @@ def handle(secrets, client):
             manual_analysis_df = pd.DataFrame(data)
             # manual_analysis_df["Date"] = pd.to_datetime(manual_analysis_df["Date"])
             # manual_analysis_df.set_index("Date", inplace=True)
-            manual_analysis_df.fillna(0, inplace=True)
-
+            # manual_analysis_df.fillna(0, inplace=True)
+            for col in manual_analysis_df.columns:
+                if pd.api.types.is_string_dtype(manual_analysis_df[col]):
+                    manual_analysis_df[col].fillna("", inplace=True)  # eller pd.NA
+                else:
+                    manual_analysis_df[col].fillna(0, inplace=True)
             # manual_analysis_df.reset_index(inplace=True)
             # manual_analysis_df["SampleTime"] = manual_analysis_df["SampleTime"].map(sample_list_df.set_index("ID")["Date"])
             # # drain_df["Sum"] = drain_df.sum(axis=1)
@@ -382,6 +428,7 @@ def handle(secrets, client):
 
     # Updating tables
     lists = LabLists.get_lists_id()
+    # column_list = LabLists.get_list_columns(lists, "Manual Results List")
     sample_list = LabLists.get_list_data(lists, "LAB_Test")
     sample_list_df = LabLists.sample_list_data(sample_list)
     LabLists.manual_analysis_data(sample_list_df)
