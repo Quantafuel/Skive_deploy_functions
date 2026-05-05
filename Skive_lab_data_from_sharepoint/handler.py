@@ -404,20 +404,12 @@ def handle(secrets, client):
                 )
 
             manual_analysis_df = pd.DataFrame(data)
-            # manual_analysis_df["Date"] = pd.to_datetime(manual_analysis_df["Date"])
-            # manual_analysis_df.set_index("Date", inplace=True)
-            # manual_analysis_df.fillna(0, inplace=True)
+
             for col in manual_analysis_df.columns:
                 if pd.api.types.is_string_dtype(manual_analysis_df[col]):
                     manual_analysis_df[col].fillna("", inplace=True)  # eller pd.NA
                 else:
                     manual_analysis_df[col].fillna(0, inplace=True)
-            # manual_analysis_df.reset_index(inplace=True)
-            # manual_analysis_df["SampleTime"] = manual_analysis_df["SampleTime"].map(sample_list_df.set_index("ID")["Date"])
-            # # drain_df["Sum"] = drain_df.sum(axis=1)
-            # sample_df["SamplePoint"] = sample_df["SamplePoint"].map(sample_mapping_dict)
-            # sample_df["TestType"] = sample_df["TestType"].map(test_types_mapping_dict)
-            # sample_df["SamplePointDescription"] = sample_df["SamplePointDescription"].map(sample_mapping_description_dict)
             client.raw.rows.insert_dataframe("lab_db", "manual_results_tb", manual_analysis_df)
 
             print("Manual analysis table inserted in raw")
