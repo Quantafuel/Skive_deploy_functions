@@ -13,7 +13,7 @@ def handle(secrets, client):
 
     import requests
 
-    from cognite.client.data_classes import Event
+    from cognite.client.data_classes import EventWrite
 
     # Sharepoint last class data
     class MSListData:
@@ -41,6 +41,7 @@ def handle(secrets, client):
         access_token = None
         CLIENT_ID = secrets.get("lists-id")
         CLIENT_SECRET = secrets.get("lists-secret")
+
         # OAuth 2.0 token endpoint
         token_url = "https://login.microsoftonline.com/92bce3bb-abfb-484b-b074-32e1a37f3631/oauth2/v2.0/token"
 
@@ -187,7 +188,7 @@ def handle(secrets, client):
                 if events.data[-1].start_time < int(date.timestamp() * 1000):
 
                     print("One new event")
-                    data_event = Event(
+                    data_event = EventWrite(
                         external_id="skive_line_status-" + str(uuid.uuid4()),
                         data_set_id=6574982093948393,
                         start_time=int(date.timestamp() * 1000),
@@ -225,41 +226,41 @@ def handle(secrets, client):
 
     vacuum_line1_latest_dp = client.time_series.data.retrieve_latest(
         external_id="2s=P01_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).value[0]
+    ).value
     vacuum_line1_latest_time = client.time_series.data.retrieve_latest(
         external_id="2s=P01_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).timestamp[0]
+    ).timestamp
     vacuum_line2_latest_dp = client.time_series.data.retrieve_latest(
         external_id="2s=P02_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).value[0]
+    ).value
     vacuum_line2_latest_time = client.time_series.data.retrieve_latest(
         external_id="2s=P02_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).timestamp[0]
+    ).timestamp
     vacuum_line3_latest_dp = client.time_series.data.retrieve_latest(
         external_id="2s=P03_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).value[0]
+    ).value
     vacuum_line3_latest_time = client.time_series.data.retrieve_latest(
         external_id="2s=P03_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).timestamp[0]
+    ).timestamp
     vacuum_line4_latest_dp = client.time_series.data.retrieve_latest(
         external_id="2s=P04_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).value[0]
+    ).value
     vacuum_line4_latest_time = client.time_series.data.retrieve_latest(
         external_id="2s=P04_PRES_CONT_TEXT_ACTIVE_MODE", before="now"
-    ).timestamp[0]
+    ).timestamp
 
     feed_screw_line1 = client.time_series.data.retrieve_latest(
         external_id="2s=P01EAC01GL001M101:M_HAST", before="now"
-    ).value[0]
+    ).value
     feed_screw_line2 = client.time_series.data.retrieve_latest(
         external_id="2s=P02EAC02GL001M201:M_HAST", before="now"
-    ).value[0]
+    ).value
     feed_screw_line3 = client.time_series.data.retrieve_latest(
         external_id="2s=P03EAC03GL001M301:M_HAST", before="now"
-    ).value[0]
+    ).value
     feed_screw_line4 = client.time_series.data.retrieve_latest(
         external_id="2s=P04EAC04GL001M401:M_HAST", before="now"
-    ).value[0]
+    ).value
 
     temp_line1 = client.time_series.data.retrieve_arrays(
         external_id="2s=P01ECC01TR111:M_MID", start=datetime.now() - timedelta(minutes=4), end=datetime.now()

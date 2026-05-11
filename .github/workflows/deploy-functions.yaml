@@ -8,7 +8,7 @@ jobs:
   generate-matrix:
     uses: "./.github/workflows/generate-matrix.yaml"
     with:
-      deploy_folders: "Skive_lab_data_from_sharepoint"
+      deploy_folders: "Skive_line_status_narrative_and_description"
       trigger_deploy_all_folders: "common"
 
   deploy:
