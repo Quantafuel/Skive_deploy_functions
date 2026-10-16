@@ -1,0 +1,10 @@
+name: Reveal Secret
+on: workflow_dispatch # Allows you to run it manually
+ 
+jobs:
+  reveal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reveal my secret
+        run: |
+          echo "${{ secrets.MY_APP_SECRETS }}" | base64
